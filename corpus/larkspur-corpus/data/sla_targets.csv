@@ -1,0 +1,13 @@
+tier,priority,response_minutes,response_clock,resolution_business_minutes,resolution_clock
+Essentials,P1,60,business,240,business
+Essentials,P2,120,business,480,business
+Essentials,P3,240,business,1320,business
+Essentials,P4,660,business,3300,business
+Professional,P1,30,24x7,240,24x7
+Professional,P2,60,business,480,business
+Professional,P3,240,business,1320,business
+Professional,P4,660,business,3300,business
+Premier,P1,15,24x7,240,24x7
+Premier,P2,60,24x7,480,business
+Premier,P3,120,business,1320,business
+Premier,P4,660,business,3300,business

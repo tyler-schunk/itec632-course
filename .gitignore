@@ -1,0 +1,25 @@
+# secrets
+.env
+*.env
+!.env.example
+
+# Python / Jupyter caches
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.venv/
+build/
+*.egg-info/
+
+# Co. app embedding caches (Labs 7-9 notebooks; Labs 14-15 use cache/ with its own .gitignore)
+.coapp_cache/
+*.npy
+
+# Files the labs write while you work (not part of the starter repo)
+labs/lab10-dataset-engineering/my_dataset/
+labs/lab11-finetuning/larkspur-lora/
+labs/lab11-finetuning/runs/
+labs/lab12-inference-metrics/lab12_measurements.csv
+labs/lab15-observability/dashboard.png
+*.log
+.DS_Store

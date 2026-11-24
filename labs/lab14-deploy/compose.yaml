@@ -1,0 +1,29 @@
+# Lab 14 - run the Co. app service on YOUR computer (not inside the lab container).
+#
+#   Open a terminal in this folder (labs/lab14-deploy) and run:
+#       docker compose up --build
+#   Test:   http://localhost:8000/health   (in your browser)
+#   Stop:   Ctrl+C   (or: docker compose down)
+#
+# Keep the course lab (docker compose up in the course folder) running too:
+# your notebook calls this service at http://host.docker.internal:8000
+
+name: itec632-lab14
+
+services:
+  coapp:
+    build: .                        # uses the Dockerfile in this folder
+    image: itec632-coapp:lab14
+    ports:
+      - "127.0.0.1:8000:8000"       # Linux hosts: change to "8000:8000" (see LAB_GUIDE "Getting unstuck")
+    env_file: ../../.env            # the course .env: LITELLM_BASE_URL + LITELLM_API_KEY (read at run time)
+    environment:
+      ITEC632_CORPUS: /corpus
+      COAPP_CACHE_DIR: /app/cache
+      PRIMARY_MODEL: qwen-moe
+      FALLBACK_MODEL: gemma-moe
+      PRIMARY_TIMEOUT_S: "60"
+      SIMULATE_PRIMARY_FAILURE: ""  # set to "error" or "timeout" to force the fallback on every request
+    volumes:
+      - ../../corpus/larkspur-corpus:/corpus:ro   # company documents + SQLite, read-only
+      - ./cache:/app/cache                          # embedding cache survives restarts

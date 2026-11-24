@@ -1,0 +1,50 @@
+{"id": "R01", "question": "What is the phone number for Larkspur support?", "intent": "support_phone", "kind": "original", "similar_to": null}
+{"id": "R02", "question": "What are your business hours?", "intent": "business_hours", "kind": "original", "similar_to": null}
+{"id": "R03", "question": "What number do I call for an emergency after hours?", "intent": "pagerline", "kind": "original", "similar_to": null}
+{"id": "R04", "question": "How much is the Professional plan per user?", "intent": "price_professional", "kind": "original", "similar_to": null}
+{"id": "R05", "question": "How should we report a critical outage?", "intent": "report_p1", "kind": "original", "similar_to": null}
+{"id": "R06", "question": "How fast do you respond to a P1 on the Professional plan?", "intent": "p1_response_professional", "kind": "original", "similar_to": null}
+{"id": "R07", "question": "What credit do we get if you miss a P1 response target?", "intent": "sla_credit", "kind": "original", "similar_to": null}
+{"id": "R08", "question": "What is your after-hours labor rate?", "intent": "afterhours_rate", "kind": "original", "similar_to": null}
+{"id": "R09", "question": "What time does support open and close each day?", "intent": "business_hours", "kind": "paraphrase", "similar_to": null}
+{"id": "R10", "question": "Can I just email you when the whole office is down?", "intent": "report_p1", "kind": "paraphrase", "similar_to": null}
+{"id": "R11", "question": "If we're on Professional and everything is down, how quickly will a tech respond?", "intent": "p1_response_professional", "kind": "paraphrase", "similar_to": null}
+{"id": "R12", "question": "How much do you charge for weekend work?", "intent": "afterhours_rate", "kind": "paraphrase", "similar_to": null}
+{"id": "R13", "question": "How fast do you respond to a P1 on the Premier plan?", "intent": "p1_response_premier", "kind": "near_miss", "similar_to": "p1_response_professional"}
+{"id": "R14", "question": "Is there a trip charge for onsite visits?", "intent": "trip_charge", "kind": "original", "similar_to": null}
+{"id": "R15", "question": "Do you charge extra to send someone to our office?", "intent": "trip_charge", "kind": "paraphrase", "similar_to": null}
+{"id": "R16", "question": "When are invoices sent?", "intent": "invoice_date", "kind": "original", "similar_to": null}
+{"id": "R17", "question": "What are the payment terms?", "intent": "payment_terms", "kind": "original", "similar_to": null}
+{"id": "R18", "question": "Which holidays are you closed?", "intent": "holidays", "kind": "original", "similar_to": null}
+{"id": "R19", "question": "What days off does Larkspur observe?", "intent": "holidays", "kind": "paraphrase", "similar_to": null}
+{"id": "R20", "question": "How many backup restore points does the Professional plan include?", "intent": "backup_professional", "kind": "original", "similar_to": null}
+{"id": "R21", "question": "How long are backups kept on Professional?", "intent": "backup_professional", "kind": "paraphrase", "similar_to": null}
+{"id": "R22", "question": "What if I think my ticket has the wrong priority?", "intent": "wrong_priority", "kind": "original", "similar_to": null}
+{"id": "R23", "question": "How much is server management?", "intent": "server_management", "kind": "original", "similar_to": null}
+{"id": "R24", "question": "How much is network device management?", "intent": "network_device_management", "kind": "near_miss", "similar_to": "server_management"}
+{"id": "R25", "question": "What is your standard laptop?", "intent": "standard_laptop", "kind": "original", "similar_to": null}
+{"id": "R26", "question": "Which laptop model do you recommend for new staff?", "intent": "standard_laptop", "kind": "paraphrase", "similar_to": null}
+{"id": "R27", "question": "When is the help desk open?", "intent": "business_hours", "kind": "paraphrase", "similar_to": null}
+{"id": "R28", "question": "What's the hourly rate for work done at night?", "intent": "afterhours_rate", "kind": "paraphrase", "similar_to": null}
+{"id": "R29", "question": "what are the payment terms ?", "intent": "payment_terms", "kind": "exact_repeat", "similar_to": null}
+{"id": "R30", "question": "What do you charge per server each month?", "intent": "server_management", "kind": "paraphrase", "similar_to": null}
+{"id": "R31", "question": "what's the support line number", "intent": "support_phone", "kind": "paraphrase", "similar_to": null}
+{"id": "R32", "question": "How much is the Essentials plan per user?", "intent": "price_essentials", "kind": "near_miss", "similar_to": "price_professional"}
+{"id": "R33", "question": "What does the Professional tier cost per user per month?", "intent": "price_professional", "kind": "paraphrase", "similar_to": null}
+{"id": "R34", "question": "What day of the month do you bill us?", "intent": "invoice_date", "kind": "paraphrase", "similar_to": null}
+{"id": "R35", "question": "What are your business hours?", "intent": "business_hours", "kind": "exact_repeat", "similar_to": null}
+{"id": "R36", "question": "Do we get money back when you miss the SLA response time?", "intent": "sla_credit", "kind": "paraphrase", "similar_to": null}
+{"id": "R37", "question": "What is your standard laptop?", "intent": "standard_laptop", "kind": "exact_repeat", "similar_to": null}
+{"id": "R38", "question": "How many backup restore points does the Essentials backup add-on include?", "intent": "backup_essentials", "kind": "near_miss", "similar_to": "backup_professional"}
+{"id": "R39", "question": "What's the P1 response time for Professional clients?", "intent": "p1_response_professional", "kind": "paraphrase", "similar_to": null}
+{"id": "R40", "question": "Professional plan price per person?", "intent": "price_professional", "kind": "paraphrase", "similar_to": null}
+{"id": "R41", "question": "How do I reach someone at night for a critical outage?", "intent": "pagerline", "kind": "paraphrase", "similar_to": null}
+{"id": "R42", "question": "What is your business-hours labor rate?", "intent": "business_hours_rate", "kind": "near_miss", "similar_to": "afterhours_rate"}
+{"id": "R43", "question": "How long do we have to pay an invoice?", "intent": "payment_terms", "kind": "paraphrase", "similar_to": null}
+{"id": "R44", "question": "How much is the Professional plan per user", "intent": "price_professional", "kind": "exact_repeat", "similar_to": null}
+{"id": "R45", "question": "How do I call the help desk?", "intent": "support_phone", "kind": "paraphrase", "similar_to": null}
+{"id": "R46", "question": "How fast do you respond to a P2 on the Professional plan?", "intent": "p2_response_professional", "kind": "near_miss", "similar_to": "p1_response_professional"}
+{"id": "R47", "question": "How much is the Premier plan per user?", "intent": "price_premier", "kind": "near_miss", "similar_to": "price_professional"}
+{"id": "R48", "question": "what is the phone number for larkspur support", "intent": "support_phone", "kind": "exact_repeat", "similar_to": null}
+{"id": "R49", "question": "What credit do we get if you miss a P1 response target", "intent": "sla_credit", "kind": "exact_repeat", "similar_to": null}
+{"id": "R50", "question": "Who do I talk to about changing a ticket's priority?", "intent": "wrong_priority", "kind": "paraphrase", "similar_to": null}

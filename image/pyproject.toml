@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "itec632"
+version = "2027.1.0"
+description = "ITEC 632 course helpers: cluster client, model names, setup check"
+requires-python = ">=3.10"
+dependencies = ["openai>=1.40", "python-dotenv>=1.0"]
+
+[tool.setuptools]
+packages = ["itec632"]

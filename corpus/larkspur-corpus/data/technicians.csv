@@ -1,0 +1,18 @@
+tech_id,name,role,tier_level,hire_date,termination_date,active
+TECH-01,Priya Raman,Service Desk Manager,2,2018-03-12,,1
+TECH-02,Tom Kessler,Senior Systems Engineer,3,2015-06-01,,1
+TECH-03,Renee Castillo,Systems Engineer,3,2019-01-14,,1
+TECH-04,Lena Fischer,Tier 2 Technician,2,2019-08-05,,1
+TECH-05,Andre Mitchell,Tier 2 Technician,2,2020-02-17,,1
+TECH-06,Grace Liu,Tier 2 Technician,2,2021-04-05,,1
+TECH-07,Brian Novak,Tier 2 Technician (Field Lead),2,2017-10-02,,1
+TECH-08,Maya Patel,Tier 1 Technician,1,2022-06-13,,1
+TECH-09,Chris Bauer,Tier 1 Technician,1,2022-09-19,,1
+TECH-10,Tasha Greene,Tier 1 Technician,1,2023-03-06,,1
+TECH-11,Luis Herrera,Tier 1 Technician,1,2024-01-08,,1
+TECH-12,Emily Sandoval,Tier 1 Technician,1,2026-02-02,,1
+TECH-13,Noah Whitaker,Tier 1 Technician,1,2026-06-08,,1
+TECH-14,Olivia Grant,Field Technician,2,2021-07-12,,1
+TECH-15,Derek Simmons,Field Technician,2,2023-08-21,,1
+TECH-16,Rachel Kim,Projects Engineer,3,2020-09-08,,1
+TECH-17,Greg Halvorsen,Service Desk Lead,2,2016-04-04,2025-05-16,0

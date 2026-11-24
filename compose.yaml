@@ -1,0 +1,16 @@
+# ITEC 632 lab environment
+#   Start:   docker compose up        (leave this window open while you work)
+#   Open:    http://localhost:8888
+#   Stop:    Ctrl+C   (or: docker compose down)
+#   Update:  docker compose pull      (when the instructor announces a new image)
+
+services:
+  lab:
+    image: ghcr.io/tyler-schunk/itec632-course:2027.1
+    ports:
+      - "127.0.0.1:8888:8888"     # only your own computer can open the lab
+    env_file: .env                # your gateway URL + personal key
+    extra_hosts:
+      - "host.docker.internal:host-gateway"   # lets labs 14-15 reach services you run on your computer (needed on Linux)
+    volumes:
+      - .:/home/student/work         # this whole folder (labs, corpus, notebooks) is shared with the lab

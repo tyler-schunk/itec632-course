@@ -1,0 +1,11 @@
+# Never send these into the image build context.
+.env
+**/*.env
+cache/
+logs/
+data/
+*.ipynb
+**/.ipynb_checkpoints
+**/__pycache__
+**/*.pyc
+dashboard.png

@@ -1,0 +1,32 @@
+# Lab 15 - the Co. app service with router, JSONL traces and /feedback.
+#
+#   Stop the Lab 14 service first (Ctrl+C in its terminal, or `docker compose down` in labs/lab14-deploy):
+#   both use port 8000.
+#   Then, in a terminal in this folder (labs/lab15-observability):
+#       docker compose up --build
+#   Test:   http://localhost:8000/health
+#   Traces: ./logs/traces.jsonl   Feedback: ./logs/feedback.jsonl   (on your computer and in Jupyter)
+
+name: itec632-lab15
+
+services:
+  coapp:
+    build: .
+    image: itec632-coapp:lab15
+    ports:
+      - "127.0.0.1:8000:8000"       # Linux hosts: change to "8000:8000" (see LAB_GUIDE "Getting unstuck")
+    env_file: ../../.env            # LITELLM_BASE_URL + LITELLM_API_KEY, read at run time (never baked into the image)
+    environment:
+      ITEC632_CORPUS: /corpus
+      COAPP_CACHE_DIR: /app/cache
+      COAPP_LOG_DIR: /app/logs
+      ROUTER_MODE: heuristic        # heuristic | hybrid | classifier | large_only
+      ROUTER_SMALL_MODEL: qwen-small
+      ROUTER_LARGE_MODEL: qwen-moe
+      FALLBACK_MODEL: gemma-moe
+      PRIMARY_TIMEOUT_S: "60"
+      SIMULATE_PRIMARY_FAILURE: ""
+    volumes:
+      - ../../corpus/larkspur-corpus:/corpus:ro   # company documents + SQLite, read-only
+      - ./cache:/app/cache                          # embedding cache survives restarts
+      - ./logs:/app/logs                            # traces and feedback, visible to your notebook

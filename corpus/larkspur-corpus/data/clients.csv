@@ -1,0 +1,41 @@
+code,name,industry,city,state,users,tier,client_since,primary_contact_id,authorized_contact_id,email_domain,main_phone,backup_included,has_voip,sites
+ACH,Archway Chiropractic Group,Healthcare (chiropractic),Overland Park,KS,22,Professional,2017,C-ACH-02,C-ACH-02,archwaychiro.example,(913) 555-0147,1,1,1
+BFL,Bluffline Logistics,Trucking/logistics,Kansas City,KS,64,Premier,2016,C-BFL-02,C-BFL-02,blufflinelogistics.example,(913) 555-0130,1,1,1
+BRL,Brightlane Realty,Real estate,Leawood,KS,31,Essentials,2019,C-BRL-02,C-BRL-01,brightlanerealty.example,(913) 555-0169,1,0,1
+CDV,Cedar Valley Veterinary,Veterinary,Olathe,KS,18,Professional,2018,C-CDV-02,C-CDV-02,cedarvalleyvet.example,(913) 555-0105,1,1,1
+CFC,Crossfield Community Church,Nonprofit/religious,Shawnee,KS,12,Essentials,2020,C-CFC-02,C-CFC-01,crossfieldchurch.example,(913) 555-0101,0,0,1
+CHW,Chalkboard Hollow Montessori,Education (private school),Lee's Summit,MO,27,Professional,2021,C-CHW-02,C-CHW-02,chalkboardhollow.example,(816) 555-0139,1,0,1
+CKS,Cask & Kettle Brewing,Food & beverage,Kansas City,MO,15,Essentials,2022,C-CKS-02,C-CKS-02,caskandkettle.example,(816) 555-0180,0,0,1
+DPA,Dunmore & Pace Attorneys,Legal,Kansas City,MO,41,Premier,2015,C-DPA-02,C-DPA-02,dunmorepace.example,(816) 555-0128,1,1,1
+EMS,Emberline Metalworks,Manufacturing,Lenexa,KS,88,Professional,2016,C-EMS-02,C-EMS-01,emberlinemetal.example,(913) 555-0136,1,1,1
+FHD,Foxhaven Dental,Healthcare (dental),Liberty,MO,24,Professional,2019,C-FHD-02,C-FHD-01,foxhavendental.example,(816) 555-0159,1,1,1
+GPE,Granite Peak Engineering,Civil engineering,Overland Park,KS,56,Premier,2017,C-GPE-02,C-GPE-02,granitepeakeng.example,(913) 555-0183,1,1,1
+HLC,Hollis Lane CPAs,Accounting,Olathe,KS,33,Premier,2015,C-HLC-02,C-HLC-01,hollislanecpa.example,(913) 555-0154,1,1,1
+IRH,Ironwood Home Health,Healthcare (home health),Independence,MO,47,Professional,2020,C-IRH-02,C-IRH-01,ironwoodhh.example,(816) 555-0179,1,1,1
+JNP,Juniper & Pine Interiors,Interior design,Leawood,KS,9,Essentials,2023,C-JNP-02,C-JNP-01,juniperpine.example,(913) 555-0123,0,0,1
+KVA,Kaw Valley Auto Group,Auto dealership,Shawnee,KS,72,Professional,2018,C-KVA-02,C-KVA-02,kawvalleyauto.example,(913) 555-0122,1,1,1
+LMF,Lindmark Family Foundation,Nonprofit/foundation,Kansas City,MO,11,Essentials,2021,C-LMF-02,C-LMF-02,lindmarkfoundation.example,(816) 555-0131,0,0,1
+MHI,Meadowhurst Insurance Agency,Insurance,Lee's Summit,MO,29,Professional,2016,C-MHI-02,C-MHI-02,meadowhurstins.example,(816) 555-0102,1,1,1
+MRC,Marrow Creek Physical Therapy,Healthcare (PT),Blue Springs,MO,19,Professional,2022,C-MRC-02,C-MRC-01,marrowcreekpt.example,(816) 555-0109,1,1,1
+NWB,Northwind Bakery Co.,Food production,Kansas City,KS,38,Essentials,2019,C-NWB-02,C-NWB-01,northwindbakery.example,(913) 555-0155,1,1,1
+OSL,Osage Street Lofts Property Mgmt,Property management,Kansas City,MO,14,Essentials,2024,C-OSL-02,C-OSL-02,osagestreetlofts.example,(816) 555-0152,0,0,1
+PFA,Prairiefire Financial Advisors,Financial advisory,Overland Park,KS,26,Premier,2017,C-PFA-02,C-PFA-02,prairiefirefa.example,(913) 555-0158,1,1,1
+QLS,Quillstone Legal Services,Legal,Olathe,KS,17,Professional,2021,C-QLS-02,C-QLS-01,quillstonelegal.example,(913) 555-0125,1,1,1
+RCS,Redbud Construction Services,Construction,Lenexa,KS,61,Professional,2018,C-RCS-02,C-RCS-02,redbudconstruction.example,(913) 555-0113,1,1,1
+RVM,Riverbend Mortgage,Mortgage lending,Overland Park,KS,35,Premier,2019,C-RVM-02,C-RVM-02,riverbendmortgage.example,(913) 555-0121,1,1,1
+SBC,Sunbeam Child Care Centers,Child care (3 sites),Olathe,KS,44,Essentials,2020,C-SBC-02,C-SBC-02,sunbeamchildcare.example,(913) 555-0184,1,1,3
+SFD,Stonefield Dermatology,Healthcare (dermatology),Leawood,KS,39,Premier,2018,C-SFD-02,C-SFD-02,stonefieldderm.example,(913) 555-0120,1,1,1
+SGA,Silo & Grain Architecture,Architecture,Lawrence,KS,23,Professional,2022,C-SGA-02,C-SGA-02,silograin.example,(785) 555-0156,1,0,1
+TBH,Timberhaus Furniture,Retail (2 stores),Shawnee,KS,20,Essentials,2023,C-TBH-02,C-TBH-02,timberhaus.example,(913) 555-0141,0,0,2
+TMS,Tallgrass Marketing Studio,Marketing agency,Kansas City,MO,28,Professional,2020,C-TMS-02,C-TMS-02,tallgrassstudio.example,(816) 555-0172,1,0,1
+UWE,Union West Electric,Electrical contractor,Kansas City,KS,52,Professional,2017,C-UWE-02,C-UWE-01,unionwestelectric.example,(913) 555-0163,1,1,1
+VLA,Vantage Lane Apartments,Property management,Independence,MO,10,Essentials,2024,C-VLA-02,C-VLA-02,vantagelaneapts.example,(816) 555-0199,0,0,1
+WFC,Westfork Credit Advisors,Debt counseling nonprofit,Kansas City,MO,21,Professional,2021,C-WFC-02,C-WFC-01,westforkcredit.example,(816) 555-0114,1,0,1
+WGL,Wheatgrass Landscaping,Landscaping,Olathe,KS,30,Essentials,2022,C-WGL-02,C-WGL-01,wheatgrasslandscaping.example,(913) 555-0149,1,0,1
+WLS,Willowshade Senior Living,Senior living,Overland Park,KS,68,Premier,2016,C-WLS-02,C-WLS-01,willowshade.example,(913) 555-0103,1,1,1
+XPT,Crosspoint Title Co.,Title/escrow,Lee's Summit,MO,25,Professional,2019,C-XPT-02,C-XPT-02,crosspointtitle.example,(816) 555-0106,1,1,1
+YCD,Yellowbrick Coffee Distributors,Wholesale distribution,Kansas City,MO,34,Essentials,2021,C-YCD-02,C-YCD-02,yellowbrickcoffee.example,(816) 555-0168,1,0,1
+ZNA,Zenith Arc Animation,Media production,Kansas City,MO,16,Professional,2023,C-ZNA-02,C-ZNA-02,zenitharc.example,(816) 555-0140,1,0,1
+AMS,Arbor Mill Storage,Self-storage (5 sites),Lenexa,KS,13,Essentials,2024,C-AMS-02,C-AMS-02,arbormillstorage.example,(913) 555-0190,0,0,5
+BCS,Bramble Creek School District Foundation,Nonprofit/education,Liberty,MO,8,Essentials,2025,C-BCS-02,C-BCS-02,bramblecreekfoundation.example,(816) 555-0166,0,0,1
+HTC,Heartland Tool & Cutter,Manufacturing,Olathe,KS,47,Professional,2019,C-HTC-02,C-HTC-02,heartlandtool.example,(913) 555-0165,1,1,1
