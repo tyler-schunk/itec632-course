@@ -3,7 +3,16 @@ Read-only tools over the Harbor PSA SQLite extract (Ch. 6 agents: tools).
 
 TOOLS is the list of OpenAI tool schemas the model sees; call_tool(name, args)
 runs one and returns a JSON string (or "ERROR: ..."), which goes back to the
-model as the tool result. Every query is parameterized and read-only.
+model as the tool result. Every query is read-only, and all tools except
+run_sql are parameterized.
+
+These are not the five tools you built in Lab 9 (lookup_ticket, search_tickets,
+get_client, list_assets, sla_target). Either set works with answer(). This set
+adds broader lookups and run_sql, one read-only SELECT for counts and joins the
+fixed tools can't do. That is a trade-off worth noticing: a general tool is more
+flexible, but the model can misuse it more easily and it is harder to keep safe,
+so run_sql accepts a single SELECT on a read-only connection and returns at
+most 50 rows.
 """
 import json
 import sqlite3

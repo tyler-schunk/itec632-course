@@ -57,8 +57,9 @@ def answer(question: str, history: list | None = None, k: int | None = None, con
     """
     t0 = time.perf_counter()
     if context_chunks is None:
-        # TODO (B3): retrieve the chunks for this question:
-        #   chunks = retrieve(get_index(), question, k=k or config.TOP_K, **retrieve_kwargs)
+        # TODO (B3): retrieve the chunks for this question with retrieve(). It needs the index
+        #   (get_index() returns it), the question, k (use config.TOP_K when k is None),
+        #   and **retrieve_kwargs passed straight through.
         chunks = []
         info = dict(LAST_INFO)
     else:
