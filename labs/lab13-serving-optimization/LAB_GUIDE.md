@@ -4,7 +4,7 @@ The second half of Chapter 9 of *AI Engineering* ("Inference Optimization") cove
 
 ## Where you'll work
 
-Cluster notebook `lab13_cluster.ipynb` in your local Docker JupyterLab, on the KU VPN. **This is a Part-A-only week** (side project 3 is due): Part A takes about **2.5 hours** and is graded; Part B is an optional stretch worth up to 10 bonus auto-check points. Part A sends about 75 requests, several with about 6,000-token prompts; Part B adds about 30.
+Cluster notebook `lab13_cluster.ipynb` in your local Docker JupyterLab, on the KU VPN. **This is a Part-A-only week** (side project 3 is due): Part A takes about **3 hours** and is graded; Part B is an optional stretch worth up to 10 bonus auto-check points. Part A sends about 75 requests, several with about 6,000-token prompts; Part B adds about 30.
 
 ## Module objectives
 
@@ -21,10 +21,10 @@ Cluster notebook `lab13_cluster.ipynb` in your local Docker JupyterLab, on the K
 2. Read the second half of Chapter 9, the section "Inference Optimization": "Model Optimization" (especially "Model compression" and "Attention mechanism optimization", where the KV cache is explained) and "Inference Service Optimization" ("Batching", "Decoupling prefill and decode", "Prompt caching", "Parallelism"). For the optional Part B, also skim Chapter 10's "Step 4. Reduce Latency with Caches".
 3. **Part A (graded):**
    - A1 Prompt caching: write `prefix_last()`, run the cache experiment once, compute the cold/warm speedup, and look at which Mac served each warm request.
-   - A2 Batching: finish the `asyncio.gather` line and compare 8 tickets processed sequentially vs 4 at a time.
+   - A2 Batching: predict how much time concurrency will save, finish the `asyncio.gather` line, and compare 8 tickets processed sequentially vs 4 at a time with your prediction.
    - A3 Output length: write `request_cost()` and a concise-answer instruction; compare it with a hard `max_tokens` cap.
    - A4 Routing: write the `is_hard()` heuristic; compare all-`qwen-moe`, all-`qwen-small` and routed on latency, cost and a keyword quality check.
-   - A5 Quantization: write `weight_gb()` and read the memory and speed-limit table (no GPU work).
+   - A5 Quantization: read the course cluster table (which models share a Mac), write `weight_gb()`, and read the memory and speed-limit table (no GPU work).
 4. **Part B (optional bonus):** set `RUN_PART_B = True`, finish `ResponseCache.lookup()` (exact match, then cosine similarity with a threshold), replay 50 help-desk questions, and read the threshold sweep.
 5. Answer the four analysis questions and the AI-use reflection.
 6. Run the final `ck.report()` cell, save, and download the notebook.
@@ -44,7 +44,7 @@ Cluster notebook `lab13_cluster.ipynb` in your local Docker JupyterLab, on the K
 
 ## Getting unstuck
 
-- **Warm requests are not faster than cold ones:** check that warm requests reuse the *same* tag and put the documents *first*. Then look at the `backend` column: `qwen-moe` runs on two Macs, each with its own cache, so the first warm request on the second Mac is cold.
+- **Warm requests are not faster than cold ones:** this is recorded but not graded. Check that warm requests reuse the *same* tag and put the documents *first*. Then look at the `backend` column: `qwen-moe` runs on two Macs, each with its own cache, so the first warm request on the second Mac is cold.
 - **`RateLimitError` (429) on long prompts:** your key allows 300,000 tokens per minute and these prompts are about 6,000 tokens each. Wait a minute and re-run only the failed cell.
 - **The concise check fails:** make `CONCISE_STYLE` stricter (a sentence limit works better than "be brief").
 - **Part B: every question is a miss:** your `lookup()` is still returning `"miss"`; run the unit-test cell after each TODO.

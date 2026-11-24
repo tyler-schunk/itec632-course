@@ -6,10 +6,10 @@ Chapter 3 of *AI Engineering* argues that evaluation is the hardest part of buil
 
 | Notebook | Environment | Time |
 |---|---|---|
-| `lab04_colab.ipynb` | Google Colab, free **T4 GPU** (loads small Hugging Face models) | about 1.5-2 hours |
+| `lab04_colab.ipynb` | Google Colab, free **T4 GPU** (loads small Hugging Face models) | about 2 hours |
 | `lab04_cluster.ipynb` | Your Docker JupyterLab on the **KU VPN** (course cluster) | about 2.5-3 hours |
 
-Total: about 4-5 hours plus the Chapter 3 reading. The two notebooks are independent; do them in either order.
+Total: about 4.5-5 hours plus the Chapter 3 reading, including the written answers (2 questions in the Colab notebook, 3 in the cluster notebook) and one AI-use reflection (in the cluster notebook). The two notebooks are independent; do them in either order.
 
 ## Module objectives
 
@@ -30,7 +30,7 @@ Total: about 4-5 hours plus the Chapter 3 reading. The two notebooks are indepen
 3. **Cluster:** with the VPN on, open `labs/lab04-eval-methods/lab04_cluster.ipynb` in your Docker JupyterLab.
    - Part A: build exact match, token F1, cosine similarity, and an LLM-judge rubric step by step.
    - Part B: get `qwen-small` answers to 25 gold questions (`corpus/larkspur-corpus/eval/`), score them four ways, run the judge-bias experiment with `qwen-moe` and `gemma-moe`, and **label 10 answers yourself** to see which metric agrees with you.
-4. Answer the written analysis and AI-use reflection questions in **each** notebook.
+4. Answer the written analysis questions in **each** notebook (Colab: Q1-Q2; cluster: Q1-Q3). The AI-use reflection is only in the cluster notebook and covers the whole lab. Questions marked *Optional* are not graded.
 5. Run the final `ck.report()` cell in each notebook and save.
 
 ## What to submit
@@ -55,4 +55,5 @@ Canvas accepts multiple files in one submission.
 - **Your cross-entropy doesn't match the Hugging Face loss:** remember the shift (logits at position *i* predict token *i+1*) and the minus sign. Print `token_nll[:5]` and `out.loss` side by side.
 - **Judge scores come back as `None`:** print the raw judge reply. Usually the rubric lost its "Reply with JSON only" line, or a placeholder like `{answer}` was deleted. `parse_score()` already handles most messy outputs.
 - **Rate-limit or timeout errors on the cluster:** just re-run the cell. Every reply is cached in `lab04_cache.json`, so finished requests are not sent again. Don't delete that file mid-lab.
+- **You changed your rubric (or `build_messages()`):** just re-run the cells after it. The cache recognizes the changed prompt and asks the model again (about 80 requests for a full rubric change).
 - Ask Copilot Chat with the exact error message and the cell that produced it; then check its suggestion against the TODO hint before pasting.

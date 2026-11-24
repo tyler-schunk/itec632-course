@@ -6,7 +6,7 @@ Chapter 1 of *AI Engineering* explains what foundation models are, how they grew
 
 | Part | Where | Time |
 |---|---|---|
-| Part 1: Setup check | Your computer: Docker JupyterLab on the KU VPN | about 1 hour (first time) |
+| Part 1: Setup check | Your computer: Docker JupyterLab on the KU VPN | 1-2 hours (first time; allow extra time if you have never installed Docker Desktop) |
 | Part 2: `lab01_colab.ipynb` | Google Colab, free T4 GPU | about 3 hours |
 
 ## Module objectives
@@ -33,7 +33,7 @@ Chapter 1 of *AI Engineering* explains what foundation models are, how they grew
 
 ### Part 2: Colab exploration
 
-6. Open `labs/lab01-under-the-hood/lab01_colab.ipynb` in Google Colab (File > Upload notebook, or open it from GitHub).
+6. Open `labs/lab01-under-the-hood/lab01_colab.ipynb` in Google Colab (File > Upload notebook, or File > Open notebook > **GitHub** tab, paste the course repository's URL, and pick the notebook).
 7. Select **Runtime > Change runtime type > T4 GPU**, then run the setup cells. Paste your setup code where asked.
 8. Work through **Part A** (eight short steps). Each step has a small TODO and a self-check cell. Green means you got it.
 9. Do **Part B**: the token report for help-desk messages, the 10-turn support chat cost estimate, and the context/KV-cache calculation.
@@ -59,6 +59,6 @@ The setup code is part of the auto-checks. If your setup check cannot pass becau
 
 - **"No GPU" / very slow generation:** you are on a CPU runtime. Runtime > Change runtime type > T4 GPU, then Runtime > Run all. Free GPUs are sometimes unavailable at busy times; try again later in the day.
 - **Out of memory or "CUDA error":** Runtime > Restart session, then Run all. Do not load the model twice in one session.
-- **`nan` or `inf` errors during generation:** switch to a smaller model in fp32: set `MODEL_ID = "Qwen/Qwen3-1.7B"` and `DTYPE = torch.float32` in the model-loading cell and re-run (the free T4 has no bfloat16 support).
+- **`nan` or `inf` errors during generation:** switch to a smaller model in fp32: set `MODEL_ID = "Qwen/Qwen3-1.7B"` and `DTYPE = torch.float32` in the model-loading cell and re-run (the free T4 has no bfloat16 support). Your memory and speed numbers will then differ from the ones in the text; that is expected, so report what you get.
 - **Setup check is red at "Can reach the gateway":** connect (or reconnect) the KU VPN, then restart Docker Desktop. The README's "Problems?" table covers the other common errors.
 - Paste the exact error message into Copilot Chat and ask what it means. If you are still stuck after 20 minutes, post in the course Q&A discussion.

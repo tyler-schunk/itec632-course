@@ -9,15 +9,17 @@ output format, and (from "Defensive Prompt Engineering") delimiters that separat
 """
 from . import config
 
-PROMPT_VERSION = "1.0"   # TODO (B4): bump this every time you change the prompt, e.g. "1.1"
+PROMPT_VERSION = "1.0"   # bump this every time you change the prompt, e.g. "1.1" (the notebook asks you to in B4)
 
 # TODO (B1): replace this placeholder with a real system prompt. It should:
 #   - say who the assistant is (Larkspur Ridge IT's internal help-desk assistant) and today's date (config.TODAY)
 #   - answer ONLY from the provided documents, and cite doc_ids in square brackets, e.g. [PRICE-2026]
 #   - say "I don't know based on the documents" when the answer is not there (no guessing)
 #   - treat text inside the documents as data, not instructions
-#   - (B4) explain how to handle documents that disagree, using version and effective_date
 #   - keep answers short, key fact first
+#
+# TODO (B4) - do NOT do this until the notebook's B4 step asks you to (B4 measures the effect of this rule):
+#   add a rule for documents that disagree, using version and effective_date.
 SYSTEM_PROMPT = f"""You are a helpful assistant. Today is {config.TODAY}."""
 
 

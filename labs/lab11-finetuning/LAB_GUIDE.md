@@ -45,7 +45,7 @@ Fine-tuning is the most expensive way to adapt a model, so an AI engineer should
 
 | Component | Points | How graded |
 |---|---|---|
-| Auto-checks (23 check points scaled to 50) | 50 | Grading script reads the `ck.report()` line |
+| Auto-checks (21 check points scaled to 50) | 50 | Grading script reads the `ck.report()` line |
 | Written analysis | 40 | Uses your own results (15), correct concepts with chapter citation (15), clear reasoning and tradeoffs (10) |
 | AI-use reflection | 10 | Complete and specific (10), generic (5), missing (0) |
 

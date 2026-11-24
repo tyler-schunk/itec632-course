@@ -21,14 +21,14 @@ import re
 PII_PATTERNS = {
     # TODO (Part A, step 3): add a pattern for API keys. Course keys look like  sk-abc123...
     #   (sk- followed by 8 or more letters, digits, _ or -). Hint: r"\bsk-[A-Za-z0-9_\-]{8,}"
-    "API_KEY": r"(?!x)x",          # placeholder that never matches - replace it
+    "API_KEY": r"(?!x)x",          # (?!x)x is a placeholder that can never match - replace it
     "PASSWORD": r"(?i)\b(?:password|passwd|pwd)\s*(?:is|:|=)\s*\S+",
     "EMAIL": r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9\-]+(?:\.[A-Za-z0-9\-]+)+",
     # TODO (Part A, step 3): add a pattern for US Social Security numbers like 123-45-6789.
-    "SSN": r"(?!x)x",              # placeholder that never matches - replace it
+    "SSN": r"(?!x)x",              # (?!x)x is a placeholder that can never match - replace it
     "CARD": r"\b(?:\d[ \-]?){13,16}\b",
     # TODO (Part A, step 3): add a pattern for US phone numbers: (913) 555-0142, 913-555-0142, 913.555.0142
-    "PHONE": r"(?!x)x",            # placeholder that never matches - replace it
+    "PHONE": r"(?!x)x",            # (?!x)x is a placeholder that can never match - replace it
 }
 
 

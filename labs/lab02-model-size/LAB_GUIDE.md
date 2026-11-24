@@ -24,7 +24,7 @@ Chapter 2 of *AI Engineering* explains how a foundation model's training data, a
 1. Connect to the **KU VPN**, run `docker compose up` in your course folder, and open http://localhost:8888.
 2. Open `labs/lab02-model-size/lab02_cluster.ipynb`. (Open it from this folder: it uses the `model_configs/` snapshot next to it if Hugging Face cannot be reached.)
 3. Run the **Setup** cell and confirm the green check.
-4. **Part A:** download the model configs, then complete the four short TODOs: `moe_info`, `mlp_params` and the active fraction, `weight_gb`, and `kv_bytes_per_token`. Each has a check cell.
+4. **Part A:** download the model configs, then complete the short TODOs: `moe_info`, `mlp_params` (plus one MLP count read off the config table) and the active fraction, `weight_gb`, and `kv_bytes_per_token`. Before two of the tables you write down a quick prediction; any honest guess earns the point. Each step has a check cell.
 5. **Part B:** finish `measure()`, run the speed experiment (33 requests, about 3-6 minutes), then build the summary table and speedup.
 6. Answer the five **written analysis** questions and the **AI-use reflection**.
 7. Run the last cell (`ck.report()`), save the notebook (File > Save), and upload the .ipynb.

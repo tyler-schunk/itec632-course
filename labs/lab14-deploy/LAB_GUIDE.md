@@ -34,7 +34,7 @@ your browser ──> JupyterLab (course container, port 8888)
 ## Steps
 
 1. Read Chapter 10, the first half: "AI Engineering Architecture", that is "Step 1. Enhance Context", "Step 2. Put in Guardrails" (input guardrails, output guardrails, guardrail implementation), "Step 3. Add Model Router and Gateway", "Step 4. Reduce Latency with Caches" and "Step 5. Add Agent Patterns". Skim Ch. 9's "Inference Performance Metrics" again.
-2. Open `labs/lab14-deploy/lab14_cluster.ipynb` in JupyterLab. Also open `app/main.py`, `app/guardrails.py` and `app/gateway.py` (double-click them in the file browser). Run **Run > Run All Cells** once: everything runs, and the red checks show what's left.
+2. Open `labs/lab14-deploy/lab14_cluster.ipynb` in JupyterLab. Also open `app/main.py`, `app/guardrails.py` and `app/gateway.py` (double-click them in the file browser). Run **Run > Run All Cells** once to see what's left. Part A runs fully. Part B needs your service running (B1), so until then the notebook reports after about 30 seconds that the service isn't reachable, skips the Part B requests, and leaves their checks red. That's expected.
 3. **Part A (guided):** work through A1-A6. Some TODOs are in the notebook and some are in the `app/` files. Each TODO names its step.
    - A1: Docker concepts. Write a secret scanner for Dockerfiles and check that our Dockerfile and `compose.yaml` follow the rules.
    - A2: FastAPI basics. Add an endpoint to a demo app, then fix `/health` in `app/main.py`.
@@ -44,7 +44,7 @@ your browser ──> JupyterLab (course container, port 8888)
    - A6: the fallback loop in `app/gateway.py`.
 4. **Part B (applied):**
    - B1: in a terminal **on your computer**, in this folder, run `docker compose up --build`. Leave it running. Open http://localhost:8000/docs in your browser to see the API.
-   - B2: run the HTTP test suite: health, 10 gold questions, guardrail tests (add your own), and the fallback test.
+   - B2: run the HTTP test suite: health, 10 gold questions, guardrail tests (add your own; if one slips past the keyword rules, that's a finding to extend the patterns or discuss, not a failed check), and the fallback test.
    - B3: run the load test (service vs direct, and a paced burst of 20 overlapping requests), plus the guardrail cost and false-positive measurement.
    - **Whenever you change a file in `app/`, stop the service (Ctrl+C) and run `docker compose up --build` again.**
 5. Answer the four written-analysis questions using your own numbers, with chapter citations.

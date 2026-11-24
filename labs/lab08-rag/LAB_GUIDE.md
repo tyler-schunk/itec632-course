@@ -12,7 +12,7 @@ You measure each one with recall@k and MRR against the gold evaluation set. Then
 ## Where you'll work
 
 - **Cluster notebook:** `lab08_cluster.ipynb` in your Docker JupyterLab, on the KU VPN. In Part B you also edit `coapp/retrieve.py` and `coapp/assistant.py` in the JupyterLab editor.
-- **Time:** about 4-5 hours: about 2 hours for Part A, 1.5 hours for Part B, and 1 hour for the analysis.
+- **Time:** about 4.5-5 hours: about 2-2.5 hours for Part A (including a few minutes of waiting while the corpus is embedded), 1.5 hours for Part B, and 1 hour for the analysis. This is the most code-heavy lab so far; the notebook gives the library calls you need.
 - **Cluster use:** about 230 requests:
   - about 45 batched embedding calls for the corpus (one time; cached in `.coapp_cache/`),
   - about 65 rerank calls,
@@ -40,7 +40,7 @@ You measure each one with recall@k and MRR against the gold evaluation set. Then
    - A5: reranking with a fallback when the reranker fails.
    - A6: recall@k and MRR, then the comparison table.
 4. **Part B** (applied lab), building the Co. app v2:
-   - B1-B2: complete the TODOs in `coapp/retrieve.py` (`chunk_doc`, `rrf_fuse`, `prefer_current`). You can reuse your Part A code.
+   - B1-B2: complete the TODOs in `coapp/retrieve.py` (`chunk_doc`, `rrf_fuse`, `prefer_current`). You can paste your Part A code: the Part A helpers (`make_chunk`, `merge_small`, `heading_of`, `split_long`) are already in `retrieve.py` under the same names.
    - B3: complete the TODO in `coapp/assistant.py` (call `retrieve`), then run the smoke test.
    - B4: run the end-to-end evaluation on 30 gold questions.
    - B5: diagnose three wrong answers.
@@ -72,5 +72,6 @@ Don't upload `.coapp_cache/`.
 - **The embedding cell is slow:** the first pass over about 800 chunks takes a few minutes, because it paces itself to stay under your key's token limit. After that, the vectors load from `.coapp_cache/` in a second. If you change how chunks are made, the texts change and the corpus is embedded again, so settle your chunking first.
 - **Rate-limit errors (429):** wait a minute and rerun the cell. Embeddings already saved to the cache aren't redone, and the B4 evaluation picks up where it stopped.
 - **The rerank call fails:** that's what the fallback is for. Your table then shows hybrid+rerank equal to hybrid, and `a6_rerank_failed_calls` is above 0. Mention it in Q1. Tell the instructor if it fails every time.
+- **You fixed `retrieve.py` or `assistant.py` but the B4 numbers didn't change:** save the file and rerun the reload cell before B4. The B4 cache is keyed by your code, so changed code gets fresh answers. To start B4 over completely, delete `lab08_app_results.jsonl`.
 - **`b3_retrieval_used` fails:** the TODO in `coapp/assistant.py` still has `chunks = []`. Save the file after editing, then rerun the reload cell.
 - **Anything else:** ask Copilot Chat about the exact error, and paste in the traceback and the cell.

@@ -52,12 +52,43 @@ def _split_long(text: str, max_chars: int) -> list:
     return pieces
 
 
+# The Part A helpers, under the same names as in the notebook, so code pasted from Part A runs here unchanged.
+split_long = _split_long
+
+
+def make_chunk(doc: dict, text: str, section: str = "") -> dict:
+    """One chunk: a piece of text plus its document's metadata (version and effective_date as strings)."""
+    return {"doc_id": doc.get("doc_id", ""), "version": str(doc.get("version", "")), "title": doc.get("title", ""),
+            "effective_date": str(doc.get("effective_date", "")), "section": section, "text": text}
+
+
+def merge_small(sections: list, min_chars: int, max_chars: int) -> list:
+    """Glue a tiny section (for example a lone heading) onto the next one."""
+    merged, buf = [], ""
+    for s in sections:
+        if buf and len(buf) < min_chars and len(buf) + len(s) + 2 <= max_chars:
+            buf = f"{buf}\n\n{s}"
+        else:
+            if buf:
+                merged.append(buf)
+            buf = s
+    if buf:
+        merged.append(buf)
+    return merged
+
+
+def heading_of(section: str) -> str:
+    """The section's heading text without the leading '#' characters ('' if it has no heading)."""
+    return section.splitlines()[0].lstrip("# ").strip() if section.startswith("#") else ""
+
+
 def chunk_doc(doc: dict, max_chars: int = config.CHUNK_CHARS, min_chars: int = config.MIN_CHUNK_CHARS) -> list:
     """Split one document at Markdown headings (#, ##, ###, ####); merge tiny sections; split long ones.
 
-    TODO (B1): paste your chunk_by_heading() logic from Part A here. Each chunk must be a dict with keys
-    doc_id, version, title, effective_date, section, text (copy the metadata from doc; version and
-    effective_date as strings). _split_long(text, max_chars) above splits an oversized section for you.
+    TODO (B1): replace the placeholder with the body of your chunk_by_heading() from Part A (everything
+    below its `def` line). The helpers it uses (make_chunk, merge_small, heading_of, split_long) are defined
+    above under the same names, so the pasted code runs as is. Keep this function's own name and arguments:
+    max_chars and min_chars come from config, and `doc` is the same kind of dict as in Part A.
     The placeholder below returns the whole document as ONE chunk (it runs, but retrieves poorly).
     """
     return [{"doc_id": doc.get("doc_id", ""), "version": str(doc.get("version", "")), "title": doc.get("title", ""),

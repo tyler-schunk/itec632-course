@@ -52,6 +52,36 @@ def _split_long(text: str, max_chars: int) -> list:
     return pieces
 
 
+# The Part A helpers, under the same names as in the notebook, so code pasted from Part A runs here unchanged.
+split_long = _split_long
+
+
+def make_chunk(doc: dict, text: str, section: str = "") -> dict:
+    """One chunk: a piece of text plus its document's metadata (version and effective_date as strings)."""
+    return {"doc_id": doc.get("doc_id", ""), "version": str(doc.get("version", "")), "title": doc.get("title", ""),
+            "effective_date": str(doc.get("effective_date", "")), "section": section, "text": text}
+
+
+def merge_small(sections: list, min_chars: int, max_chars: int) -> list:
+    """Glue a tiny section (for example a lone heading) onto the next one."""
+    merged, buf = [], ""
+    for s in sections:
+        if buf and len(buf) < min_chars and len(buf) + len(s) + 2 <= max_chars:
+            buf = f"{buf}\n\n{s}"
+        else:
+            if buf:
+                merged.append(buf)
+            buf = s
+    if buf:
+        merged.append(buf)
+    return merged
+
+
+def heading_of(section: str) -> str:
+    """The section's heading text without the leading '#' characters ('' if it has no heading)."""
+    return section.splitlines()[0].lstrip("# ").strip() if section.startswith("#") else ""
+
+
 def chunk_doc(doc: dict, max_chars: int = config.CHUNK_CHARS, min_chars: int = config.MIN_CHUNK_CHARS) -> list:
     """Split one document at Markdown headings (#, ##, ###, ####); merge tiny sections; split long ones."""
     parts = [p.strip() for p in re.split(r"\n(?=#{1,4} )", "\n" + doc.get("text", "")) if p.strip()]

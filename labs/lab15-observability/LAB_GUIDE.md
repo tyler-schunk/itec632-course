@@ -29,7 +29,7 @@ This folder's `app/` already contains a working help-desk service (with guardrai
 ## Steps
 
 1. Read Chapter 10, the second half: "Step 3. Add Model Router and Gateway" (Router, Gateway) again, "Monitoring and Observability" (Metrics, Logs and traces, Drift detection), "AI Pipeline Orchestration" (skim), and "User Feedback" (Extracting Conversational Feedback, Feedback Design, Feedback Limitations).
-2. Stop your Lab 14 service. Open `labs/lab15-observability/lab15_cluster.ipynb`, plus `app/router.py` and `app/main.py`. Run **Run > Run All Cells** once to see what's left.
+2. Stop your Lab 14 service. Open `labs/lab15-observability/lab15_cluster.ipynb`, plus `app/router.py` and `app/main.py`. Run **Run > Run All Cells** once to see what's left. Part A runs fully; Run All then stops on purpose at B2 (after about 30 seconds) until your Lab 15 service is running, so it doesn't send requests to a service that isn't there.
 3. **Part A (guided):**
    - A1: implement `classify_heuristic()` in `app/router.py`, then compare it with the `qwen-small` classifier.
    - A2: read how a trace is built (`app/tracing.py`) and write `latency_percentiles()`.
@@ -73,5 +73,5 @@ New files in this folder (everything else is the Lab 14 service):
 - **The notebook can't reach the service** (`service_health` fails). This is the same fix as Lab 14. On Linux, the course `compose.yaml` already has the `extra_hosts` line for `host.docker.internal`, but you must change the port line in **this** lab's `compose.yaml` from `"127.0.0.1:8000:8000"` to `"8000:8000"` and rebuild. Or use Plan B in the notebook. Check that `/health` shows `"version": "lab15-1.0"`. If it shows `lab14`, your old service is still running.
 - **`traces_complete` fails, or the notebook finds 0 traces.** Open `logs/traces.jsonl` in JupyterLab. If it's missing, the container can't write to `logs/`. On Linux, run `chmod 777 logs` in this folder on your computer and restart the service. The notebook falls back to `GET /traces` automatically, so the analysis still works.
 - **`feedback_posted` fails with 501.** The container still runs the old code. Stop it and run `docker compose up --build` after finishing the A3 TODO.
-- **Router accuracy looks low.** That's a finding, not a bug. The gold set's `difficulty` describes how hard a question is for a *person*, which isn't the same as whether it needs the large model. Look at which questions disagree and discuss it in Q3.
+- **Router accuracy looks low.** That's a finding, not a bug (the notebook explains why next to the table). The gold set's `difficulty` describes how hard a question is for a *person*, which isn't the same as whether it needs the large model. Look at which questions disagree and discuss it in Q3.
 - Anything else: ask Copilot Chat with the exact error text, then email the instructor with a screenshot.

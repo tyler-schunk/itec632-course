@@ -23,11 +23,11 @@ Cluster notebook `lab12_cluster.ipynb` in your local Docker JupyterLab, on the K
 4. **Part A (guided):**
    - A1: finish `compute_metrics()` (TTFT, TPOT, total latency, tokens/second) and check that `total ~= TTFT + TPOT x (n - 1)`.
    - A2: measure all three models 6 times each; read the median and p90 table.
-   - A3: compute the bandwidth "speed limit" and MBU for each model.
+   - A3: read the course cluster table (which model runs at which precision on which Mac), predict which model decodes fastest, then compute the bandwidth "speed limit" and MBU for each model.
    - A4: measure TTFT at about 500, 2K and 8K prompt tokens for `qwen-moe` and `qwen-dense`, and estimate prefill speed.
 5. **Part B (applied):**
    - B1: define your SLO; finish `run_burst()` (parallel requests with `asyncio.gather`) and `burst_metrics()` (throughput, goodput, SLO pass rate).
-   - B2: run the concurrency sweep (1, 2, 4 parallel) **once**, and read the table and plots.
+   - B2: run the concurrency sweep (1, 2, 4 parallel) **once**, and read the table, the plots, and the slowest-requests table.
    - B3 (optional): the 8-way test, only if your instructor announces the higher limit.
    - B4: set your capacity assumptions and compute how many technicians the cluster could serve.
 6. Answer the five analysis questions and the AI-use reflection in the notebook.
@@ -45,7 +45,7 @@ Cluster notebook `lab12_cluster.ipynb` in your local Docker JupyterLab, on the K
 | Written analysis | 40 | Uses your own results (15), correct concepts with chapter citation (15), clear reasoning and trade-offs (10) |
 | AI-use reflection | 10 | Complete and specific (10), generic (5), missing (0) |
 
-Your numbers will differ from classmates' (different times, different cluster load). That is expected and is not graded; your explanation of them is.
+Your numbers will differ from classmates' (different times, different cluster load). That is expected and is not graded; your explanation of them is. Checks that depend only on cluster behavior (for example whether `qwen-dense` decoded more slowly) are recorded but not graded.
 
 ## Getting unstuck
 

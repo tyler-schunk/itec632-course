@@ -53,6 +53,6 @@ Upload `lab06_cluster.ipynb` **with its outputs** to Canvas. You don't need to u
 
 - **A JSON-schema call fails with a 400 error:** print `TRIAGE_SCHEMA`. Strict mode wants every property listed in `required`, `"additionalProperties": False`, and enum values that are plain strings.
 - **`classify()` returns None, or B3 says "finish B2 first":** you still have `messages = None` or `response_format=None` in `classify()`. Fill in both lines and rerun the B2 cell before B3.
-- **B3 was interrupted (VPN dropped, rate limit):** just rerun the cell. Finished results come from `lab06_results.jsonl`. If you change your prompt, its fingerprint changes and the runner makes fresh requests for it (another ~200 requests). Only do that on purpose.
+- **B3 was interrupted (VPN dropped, rate limit):** just rerun the cell. Finished results come from `lab06_results.jsonl`, and failed requests are not saved, so the rerun retries only those. If you change your prompt, its fingerprint changes and the runner makes fresh requests for it (another ~200 requests). Only do that on purpose.
 - **Accuracy looks low:** before you change the prompt, look at the confusion matrix and a few rows of `res`. Some "errors" are the label's fault, not the model's. That's what B5 is for.
 - **Anything else:** ask Copilot Chat about the exact error message, and paste in the cell that caused it.

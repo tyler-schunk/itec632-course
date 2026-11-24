@@ -5,7 +5,7 @@ Retrieval (Lab 8) helps when the answer is written down somewhere. A lot of what
 ## Where you'll work
 
 - **Cluster notebook:** `lab09_cluster.ipynb` in your local Docker JupyterLab, with the **KU VPN** on.
-- **Time:** about 3 hours. This is a **Part-A-only week** (side project 2 is due), so Part B is an optional bonus.
+- **Time:** about 3-3.5 hours. This is a **Part-A-only week** (side project 2 is due), so Part B is an optional bonus.
 - **Cluster use:** about 150 requests. The notebook paces itself; you don't need to do anything.
 
 ## Module objectives
@@ -21,7 +21,7 @@ Retrieval (Lab 8) helps when the answer is written down somewhere. A lot of what
 ## Steps
 
 1. Read Chapter 6, the "Agents" section: "Agent Overview", "Tools" (including "Write actions"), "Planning" (especially "Plan generation" with its "Function calling" subsection, "Reflection and error correction", and "Tool selection"), and "Agent Failure Modes and Evaluation" ("Planning failures", "Tool failures", "Efficiency"). Skim "Memory".
-2. Open `labs/lab09-agents/lab09_cluster.ipynb`. Run **Run > Run All Cells** once: everything runs, and the red checks show what's left.
+2. Open `labs/lab09-agents/lab09_cluster.ipynb`. Run **Run > Run All Cells** once: everything runs (the optional Part B cells skip their model calls until you start Part B), and the red checks show what's left.
 3. **Part A (graded):** work through A1-A8 in order. Each section has a short TODO followed by a check cell.
    - A1: write `get_client` and `sla_target` (parameterized SQL on a read-only connection).
    - A2: write the `sla_target` tool schema; see a native tool call.
@@ -51,6 +51,7 @@ Retrieval (Lab 8) helps when the answer is written down somewhere. A lot of what
 
 ## Getting unstuck
 
+- **First time writing SQL (A1).** Copy the pattern of the tools above it: `rows("SELECT ... WHERE code = ?", (value,))`. The `?` is filled from the tuple, and you get back a list of dicts.
 - **The agent loops until max_steps or repeats the same call.** Print the trace (`show_trace("T04")`). Usually a tool message is missing its `tool_call_id`, or you appended the tool result but not the assistant turn with its `tool_calls` first. The order must be: assistant turn, then one tool message per call.
 - **"No client with code ..." or a pattern error.** That's the validation working: the model passed a name where a code was needed. Good agents recover by calling `get_client` first. If yours doesn't, read the error message it got: is it clear enough to act on?
 - **A task "fails" but the answer looks right.** Look at `must_include` for that task. The scorer needs every fact (for example both the ticket ID *and* the SLA target). Don't change the tasks; explain the case in your analysis.

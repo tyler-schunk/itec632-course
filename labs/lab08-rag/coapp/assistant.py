@@ -60,6 +60,8 @@ def answer(question: str, history: list | None = None, k: int | None = None, con
         # TODO (B3): retrieve the chunks for this question with retrieve(). It needs the index
         #   (get_index() returns it), the question, k (use config.TOP_K when k is None),
         #   and **retrieve_kwargs passed straight through.
+        #   (`**retrieve_kwargs` collects any extra keyword arguments given to answer(), such as
+        #   prefer_current_version=False, and `retrieve(..., **retrieve_kwargs)` hands them on unchanged.)
         chunks = []
         info = dict(LAST_INFO)
     else:
