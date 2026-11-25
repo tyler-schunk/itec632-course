@@ -2,6 +2,8 @@
 
 A fine-tuned model is only as good as the data it learns from. Next week (Lab 11) you fine-tune a small model on Colab; this week you build its training data the way an AI engineer at Larkspur would. First you audit the real Harbor PSA ticket data for quality problems (duplicates, wrong labels, useless notes) and clean it. Then you build a supervised fine-tuning (SFT) dataset: question/answer pairs **generated** by `qwen-moe` from current Larkspur documents and **filtered** by an AI judge and simple rules, plus real "ticket -> resolution note" pairs from the cleaned tickets, all with recorded lineage. This lab covers **Chapter 8** of *AI Engineering* (data curation and quality, data synthesis and verification, deduplication, cleaning and formatting) and the **"When to Finetune"** part of **Chapter 7**. (The course swaps the Chapter 7 and 8 order on purpose, so you fine-tune on data you built.)
 
+**Where you'd use this at work:** Ticket data quality (duplicates, wrong categories, closure notes that just say "fixed") affects reporting, SLA tracking, and any AI built on that data. Cleaning it and documenting where data came from is everyday IT data work.
+
 ## Where you'll work
 
 - **Cluster notebook:** `lab10_cluster.ipynb` in your local Docker JupyterLab, with the **KU VPN** on.

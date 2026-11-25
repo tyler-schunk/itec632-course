@@ -2,6 +2,8 @@
 
 Chapter 5 of *AI Engineering* moves from "what is a prompt" to how to engineer one well: provide sufficient context, use examples, break tasks into steps, iterate and version your prompts, and defend them against prompt attacks. In this lab you practice each of those with measurements. Then you build **version 1 of the Larkspur company assistant** (the Co. app), which answers staff questions from documents you hand it. Larkspur keeps old document versions around, and some contradict the current ones, so your assistant has to learn to use version and date metadata to pick the right answer.
 
+**Where you'd use this at work:** A system prompt is the configuration of an AI assistant. Writing it, versioning it like a config file, and testing it against prompt injection is the admin work behind custom GPTs, Copilot agents, and similar tools.
+
 ## Where you'll work
 
 - **Cluster notebook:** `lab07_cluster.ipynb` in your Docker JupyterLab, on the KU VPN. You also edit one Python file, `coapp/prompts.py`, in the JupyterLab editor.

@@ -2,6 +2,8 @@
 
 Chapter 5 of *AI Engineering* opens with the basics of prompting: what a prompt is made of, zero-shot instructions, and the split between system and user prompts. This lab turns those ideas into working code. You'll see how the chat template turns messages into one string, write clear zero-shot instructions, get reliably parseable answers with strict JSON-schema output, and treat prompts as versioned code. Then you'll build a real tool for Larkspur Ridge IT: a classifier that pre-fills the category and priority of help-desk tickets. You'll measure it with two models, compare cost and latency, and find out that the "correct" labels are not always correct.
 
+**Where you'd use this at work:** Automatic ticket triage (category and priority) is one of the first AI features service desks and MSPs turn on. You build one, measure it, and see why the labels in your own ticket data are part of the problem.
+
 ## Where you'll work
 
 - **Cluster notebook:** `lab06_cluster.ipynb` in your Docker JupyterLab, on the KU VPN.

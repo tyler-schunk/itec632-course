@@ -2,6 +2,8 @@
 
 Until now the Larkspur help-desk assistant (the "Co. app") has run inside notebooks, and nobody on the service desk can use a notebook. In this lab you turn the Co. app v3 (retrieval + tools) into a small **web service**. It runs in its own **Docker container** and answers `POST /ask` over HTTP. You also add the first architecture layers that **Chapter 10** of *AI Engineering* describes. An **input guardrail** redacts PII and secrets and blocks out-of-scope requests. An **output guardrail** requires a citation or "I don't know" and strips key-like strings. A **gateway-style model route** retries on `gemma-moe` when `qwen-moe` fails or times out. Then you test the deployed service the way users reach it, over HTTP, and measure how much latency the service layer adds. Ch. 9 gives the deployment context (latency and throughput).
 
+**Where you'd use this at work:** Running an AI app as a container, with secrets in environment variables, PII redaction, and a fallback model, is standard IT operations work: the same discipline as deploying any internal service.
+
 ## Where you'll work
 
 - **Cluster notebook:** `lab14_cluster.ipynb` in your local Docker JupyterLab, with the **KU VPN** on.

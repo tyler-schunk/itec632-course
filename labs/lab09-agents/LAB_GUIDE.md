@@ -2,6 +2,8 @@
 
 Retrieval (Lab 8) helps when the answer is written down somewhere. A lot of what Larkspur's service desk asks is not in any document: it lives in Harbor PSA data. "Which open tickets does Kaw Valley Auto Group have, and what's our response target?" needs a lookup, a second lookup, and some reasoning about the results. In this lab you turn the model into an **agent**: you give it tools over the Larkspur ticket database, write the loop that lets it plan, call tools and read the results, and then measure how well (and how efficiently) it works. This lab covers the "Agents" part of **Chapter 6** of *AI Engineering*: tools, planning with function calling, write actions, and agent failure modes and evaluation.
 
+**Where you'd use this at work:** AI agents that look things up in a ticketing system or take actions are arriving in PSA and ITSM tools. You see how they call tools, why they need read-only access and argument checks, and why write actions need human approval, just like change management.
+
 ## Where you'll work
 
 - **Cluster notebook:** `lab09_cluster.ipynb` in your local Docker JupyterLab, with the **KU VPN** on.

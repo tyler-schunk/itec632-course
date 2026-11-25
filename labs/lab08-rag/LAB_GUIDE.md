@@ -9,6 +9,8 @@ Chapter 6 of *AI Engineering* introduces retrieval-augmented generation (RAG): i
 
 You measure each one with recall@k and MRR against the gold evaluation set. Then you plug retrieval into **Co. app v2** and evaluate it end to end: answer accuracy, trap questions where outdated documents lurk, and whether it admits when it doesn't know.
 
+**Where you'd use this at work:** "Chat with our knowledge base" is the most common AI project in IT. The settings you test here (chunking, keyword versus semantic versus hybrid search, reranking) are the same ones you configure in commercial RAG products, and the failure diagnosis is how you troubleshoot them.
+
 ## Where you'll work
 
 - **Cluster notebook:** `lab08_cluster.ipynb` in your Docker JupyterLab, on the KU VPN. In Part B you also edit `coapp/retrieve.py` and `coapp/assistant.py` in the JupyterLab editor.

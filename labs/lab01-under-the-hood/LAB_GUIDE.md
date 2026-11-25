@@ -2,6 +2,8 @@
 
 Chapter 1 of *AI Engineering* explains what foundation models are, how they grew out of language models, and how AI engineering differs from traditional ML engineering. In this lab you do two things. First, you set up the tools you will use all semester: Docker, the KU VPN, and your personal key for the course AI cluster. Second, you load a real open-weight model (Qwen3-4B-Instruct-2507) onto a free Colab GPU and look under the hood: tokens, chat templates, model size, GPU memory, next-token probabilities, and why long conversations cost more. You finish by estimating, for Larkspur Ridge IT's help desk, how many tokens real messages and support chats use and what that means for cost and context limits.
 
+**Where you'd use this at work:** Every AI tool an organization pays for is billed by tokens and has a context limit. Estimating the tokens in a typical support chat is how you sanity-check a vendor quote or a usage budget before a rollout.
+
 ## Where you'll work
 
 | Part | Where | Time |

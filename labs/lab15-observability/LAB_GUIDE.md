@@ -7,6 +7,8 @@ A deployed assistant you can't see into is one you can't fix or improve. In this
 
 Then you simulate 40 user sessions against your service, analyze the traces (latency percentiles per route, router accuracy, failure categories, token cost, feedback rate), and build a small monitoring **dashboard**. You also add two responsible-AI habits: telling users that answers are AI-generated, and logging only redacted text.
 
+**Where you'd use this at work:** Once an AI service is live, IT owns it. Logs, traces, dashboards, alert thresholds, and user feedback tell you when it breaks or drifts. This is the monitoring side of running AI in production.
+
 ## Where you'll work
 
 - **Cluster notebook:** `lab15_cluster.ipynb` in your local Docker JupyterLab, with the **KU VPN** on.

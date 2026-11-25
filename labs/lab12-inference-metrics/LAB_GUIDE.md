@@ -2,6 +2,8 @@
 
 Chapter 9 of *AI Engineering* ("Understanding Inference Optimization") explains how to measure an inference service: time to first token (TTFT), time per output token (TPOT), throughput, goodput, and utilization (MFU and MBU), and why prefill is compute-bound while decode is memory-bandwidth-bound. In this lab you measure all of it on the course cluster: three Mac Studio M3 Ultra machines running oMLX behind a LiteLLM gateway. You time streamed responses from `qwen-moe`, `qwen-dense` and `qwen-small`, watch TTFT grow with prompt length, send parallel requests to see the throughput/latency trade-off, and finish with a capacity estimate: how many Larkspur Ridge IT technicians could this cluster serve at a response-time target you define?
 
+**Where you'd use this at work:** Capacity planning for AI works like capacity planning for any service: a response-time target (SLO), p90 latency, and how many users one server can support. You produce the estimate a manager asks for before buying hardware.
+
 ## Where you'll work
 
 Cluster notebook `lab12_cluster.ipynb` in your local Docker JupyterLab, on the KU VPN. About **4-5 hours**, including 20-30 minutes of waiting while measurements run. The notebook sends about 120 requests in total (136 if you do the optional 8-way test).

@@ -2,6 +2,8 @@
 
 Fine-tuning is the most expensive way to adapt a model, so an AI engineer should know when it pays off and what it costs. In this lab you fine-tune **Qwen3-1.7B** with **LoRA** on the Larkspur dataset you built in Lab 10, on a **free Colab T4 GPU**. You start with the memory math that explains why full fine-tuning doesn't fit on a 15 GB GPU but LoRA does, choose LoRA hyperparameters, and watch the loss. Then you run the real fine-tune and compare base vs fine-tuned answers on your held-out test set, separately for document facts and for the format of resolution notes, and weigh fine-tuning against your Lab 8 RAG pipeline. This lab covers **Chapter 7** of *AI Engineering*: memory bottlenecks and memory math, parameter-efficient fine-tuning and LoRA, model merging, and fine-tuning vs RAG.
 
+**Where you'd use this at work:** Vendors pitch "a model fine-tuned on your data." This lab shows what fine-tuning costs and what it actually changes, so you can judge when it beats retrieval (Lab 08) and when it doesn't.
+
 ## Where you'll work
 
 - **Colab notebook:** `lab11_colab.ipynb` on Google Colab with a **T4 GPU** (Runtime > Change runtime type > T4 GPU). No cluster or VPN needed.
