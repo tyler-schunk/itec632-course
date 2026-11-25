@@ -1,12 +1,12 @@
 # Lab 13 - Inference Service Optimization
 
-The second half of Chapter 9 of *AI Engineering* ("Inference Optimization") covers how to make a model service faster and cheaper: model compression such as quantization, and service-level techniques such as batching and prompt caching. This week you apply them to Larkspur Ridge IT's help-desk assistant on the course cluster. You measure what oMLX's prompt cache does to TTFT (and why the order of the prompt decides whether it works), compare sequential and concurrent processing, control output length, and use quantization and the speed numbers you measured in Lab 12 to make a hardware sizing decision. The optional stretch builds a response cache (exact and semantic) and measures how often it is wrong.
+The second half of Chapter 9 of *AI Engineering* ("Inference Optimization") covers how to make a model service faster and cheaper: model compression such as quantization, and service-level techniques such as batching and prompt caching. This week you apply them to Larkspur Ridge IT's help-desk assistant on the course cluster. You measure what oMLX's prompt cache does to TTFT (and why the order of the prompt decides whether it works), compare sequential and concurrent processing, control output length, and use quantization and the decode speed you measure in A3 (compared with Lab 12's MBU) to make a hardware sizing decision. The optional stretch builds a response cache (exact and semantic) and measures how often it is wrong.
 
 **Where you'd use this at work:** Prompt caching, concurrency, answer-length limits, and quantization are the levers that cut AI bills and speed up responses. You measure which ones are worth turning on.
 
 ## Where you'll work
 
-Cluster notebook `lab13_cluster.ipynb` in your local Docker JupyterLab, on the KU VPN. **This is a Part-A-only week** (side project 3 is due): Part A takes about **2.5 hours** and is graded; Part B is an optional stretch worth up to 10 bonus auto-check points. Part A sends about 50 requests, several with about 6,000-token prompts; Part B adds about 30.
+Cluster notebook `lab13_cluster.ipynb` in your local Docker JupyterLab, on the KU VPN. **This is a Part-A-only week** (side project 3 is due): Part A takes about **2.5 hours** and is graded; Part B is an optional stretch worth up to 10 bonus auto-check points. Part A sends about 50 requests, several with about 6,000-token prompts; Part B adds about 25-40.
 
 ## Module objectives
 
@@ -22,9 +22,9 @@ Cluster notebook `lab13_cluster.ipynb` in your local Docker JupyterLab, on the K
 1. Connect to the KU VPN, run `docker compose up`, open `labs/lab13-serving-optimization/lab13_cluster.ipynb`.
 2. Read the second half of Chapter 9, the section "Inference Optimization": "Model Optimization" (especially "Model compression" and "Attention mechanism optimization", where the KV cache is explained) and "Inference Service Optimization" ("Batching", "Decoupling prefill and decode", "Prompt caching", "Parallelism"). For the optional Part B, also skim Chapter 10's "Step 4. Reduce Latency with Caches".
 3. **Part A (graded):**
-   - A1 Prompt caching: write `prefix_last()`, run the cache experiment once, compute the cold/warm speedup, and look at which Mac served each warm request.
+   - A1 Prompt caching: write `prefix_last()`, predict the cold/warm speedup, run the cache experiment once, compare the measured speedup with your guess, and look at which Mac served each warm request.
    - A2 Batching: predict how much time concurrency will save, finish the `asyncio.gather` line, and compare 8 tickets processed sequentially vs 4 at a time with your prediction.
-   - A3 Output length: write `request_cost()` and a concise-answer instruction; compare it with a hard `max_tokens` cap.
+   - A3 Output length: write a concise-answer instruction and compare it with a hard `max_tokens` cap (latency, cost from the provided `request_cost()`, truncation), then decide which setting and safety cap you would ship.
    - A4 Quantization: read the course cluster table (which models share a Mac) and the memory and speed-limit table (`weight_gb()` from Lab 02 is provided), then choose the precision of each model so that three chat models fit on one Mac with room for KV cache, and explain your choice (no GPU work).
    - Not in this lab: model routing (sending easy questions to a small model). It is a Chapter 10 topic, and you build a router in Lab 15.
 4. **Part B (optional bonus):** set `RUN_PART_B = True`, finish `ResponseCache.lookup()` (exact match, then cosine similarity with a threshold), replay 50 help-desk questions, and read the threshold sweep.
@@ -50,5 +50,5 @@ Cluster notebook `lab13_cluster.ipynb` in your local Docker JupyterLab, on the K
 - **`RateLimitError` (429) on long prompts:** your key allows 300,000 tokens per minute and these prompts are about 6,000 tokens each. Wait a minute and re-run only the failed cell.
 - **The concise check fails:** make `CONCISE_STYLE` stricter (a sentence limit works better than "be brief").
 - **A4 plan does not fit:** look at the `weights_gb` column; one model at 16 bits takes most of the Mac by itself. Lower the biggest models first, then see whether the small one can keep more bits.
-- **Part B: every question is a miss:** your `lookup()` is still returning `"miss"`; run the unit-test cell after each TODO.
+- **Part B: the replay says it is skipping:** the replay runs only after both `lookup()` unit tests pass, so it doesn't spend about 50 long requests on a cache that can't hit. Run the unit-test cell after each TODO.
 - Ask Copilot Chat with the exact error message, and paste the function you are working on.

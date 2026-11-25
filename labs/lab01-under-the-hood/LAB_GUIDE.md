@@ -37,7 +37,7 @@ Chapter 1 of *AI Engineering* explains what foundation models are, how they grew
 
 6. Open `labs/lab01-under-the-hood/lab01_colab.ipynb` in Google Colab (File > Upload notebook, or File > Open notebook > **GitHub** tab, paste the course repository's URL, and pick the notebook).
 7. Select **Runtime > Change runtime type > T4 GPU**, then run the setup cells. Paste your setup code where asked.
-8. Work through **Part A** (eight short steps). Each step has a small TODO and a self-check cell. Green means you got it.
+8. Work through **Part A** (eight short steps). Each step has a small TODO and a self-check cell; in three steps the TODO is a quick guess before the cell computes the answer for you (any honest guess earns the point). Green means you got it.
 9. Do **Part B**: the token report for help-desk messages, the 10-turn support chat cost estimate, and the context/KV-cache calculation.
 10. Answer the five **written analysis** questions as you reach them in the notebook (Q1 after Step 7, Q2 after B.1, Q3 after B.3, Q4 and Q5 at the end), then the **AI-use reflection** at the bottom.
 11. Run the last cell (`ck.report()`), then **File > Download > Download .ipynb**.

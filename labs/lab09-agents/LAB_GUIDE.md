@@ -30,10 +30,10 @@ Retrieval (Lab 8) helps when the answer is written down somewhere. A lot of what
    - A3: add argument validation that returns errors to the model.
    - A4: write the body of the agent loop.
    - A5: write the confirmation gate for the simulated "write" tool.
-   - A6: write the answer scorer and evaluate the agent on 15 tasks.
+   - A6: predict what the provided answer scorer says on two examples, then evaluate the agent on 15 tasks.
    - A7: read the traces and label failures (planning / tool misuse / tool failure / efficiency).
    - A8: compare `qwen-moe`, `gemma-moe` and `qwen-small` on 5 tasks.
-4. **Part B (optional bonus, up to 10 points):** build Co. app v3. Copy your Lab 8 Co. app into `coapp/`, add `tools.py`, and add a router to `assistant.answer()`. A complete reference v3 is in `coapp_reference/` if you get stuck (Lab 14 builds on v3, so having a working copy matters).
+4. **Part B (optional bonus, up to 10 points):** build Co. app v3. The B1 cell copies the Lab 8 reference v2 into `coapp/` (set `MY_LAB8_COAPP` in that cell to use your own Lab 8 Co. app instead). Then add `tools.py`, update `prompts.py` so the model may answer from tool results, and add a router to `assistant.answer()`. A complete reference v3 is in `coapp_reference/` if you get stuck (Lab 14 builds on v3, so having a working copy matters).
 5. Answer the four written-analysis questions using your own numbers and traces, with chapter citations.
 6. Complete the AI-use reflection, run the final cell, save.
 
@@ -46,7 +46,7 @@ Retrieval (Lab 8) helps when the answer is written down somewhere. A lot of what
 
 | Component | Points | How graded |
 |---|---|---|
-| Auto-checks (Part A, 30 check points scaled to 50) | 50 | Grading script reads the `ck.report()` line |
+| Auto-checks (Part A, 28 check points scaled to 50) | 50 | Grading script reads the `ck.report()` line |
 | Written analysis | 40 | Uses your own results (15), correct concepts with chapter citation (15), clear reasoning and tradeoffs (10) |
 | AI-use reflection | 10 | Complete and specific (10), generic (5), missing (0) |
 | **Part B bonus** | up to +10 | Bonus auto-checks, shown as `partB_bonus_points` in the summary |

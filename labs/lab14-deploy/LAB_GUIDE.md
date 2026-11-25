@@ -47,7 +47,7 @@ your browser ──> JupyterLab (course container, port 8888)
 4. **Part B (applied):**
    - B1: in a terminal **on your computer**, in this folder, run `docker compose up --build`. Leave it running. Open http://localhost:8000/docs in your browser to see the API.
    - B2: run the HTTP test suite: health, 10 gold questions, guardrail tests (add your own; if one slips past the keyword rules, that's a finding to extend the patterns or discuss, not a failed check), and the fallback test.
-   - B3: run the load test (service vs direct, and a paced burst of 20 overlapping requests), plus the guardrail cost and false-positive measurement.
+   - B3: predict how much time the service adds and what overlapping requests do, then run the load test (service vs direct, and a paced burst of 20 overlapping requests) and compare with your predictions, plus the guardrail cost and false-positive measurement.
    - **Whenever you change a file in `app/`, stop the service (Ctrl+C) and run `docker compose up --build` again.**
 5. Answer the four written-analysis questions using your own numbers, with chapter citations.
 6. Complete the AI-use reflection, run the final cell, save. Stop the service with Ctrl+C or `docker compose down`.
@@ -82,6 +82,7 @@ Files in this folder:
 
 - **`service_health` fails, but http://localhost:8000/health works in your browser.** Your notebook runs inside the course container, where `localhost` means the container itself, so the notebook uses `http://host.docker.internal:8000`. Docker Desktop on Windows and Mac provides that name automatically.
   - **Linux:** the course `compose.yaml` (the one in the top folder) already maps `host.docker.internal` for you with `extra_hosts: - "host.docker.internal:host-gateway"`. If your copy of it is older and lacks those lines, add them under the `lab:` service and restart the course lab with `docker compose up`. You **do** still need one change in this lab's `compose.yaml`: change the port line from `"127.0.0.1:8000:8000"` to `"8000:8000"`, then run `docker compose up --build` again. On Linux, `host.docker.internal` points at Docker's bridge address, not 127.0.0.1, so a port published only on 127.0.0.1 can't be reached from the course container.
+  - Also on Linux: if the service log shows it re-embedding the corpus on every start, the container can't write to `cache/`. Run `chmod 777 cache` in this folder once.
   - Still stuck? Use **Plan B** in the notebook: it runs the service inside the course container with uvicorn. Mention that in your analysis.
 - **The build fails at `pip install`.** Check your internet connection. The image downloads packages from PyPI, which doesn't need the VPN, but some campus or VPN setups block it. Try again off the VPN for the build only, then reconnect before `docker compose up`.
 - **The service starts but `/ask` returns 502 "all models failed".** The container can't reach the gateway. Check that the VPN is on and that the top-level `.env` has your URL and key (compose reads `../../.env`). The service terminal shows the error for each attempt.

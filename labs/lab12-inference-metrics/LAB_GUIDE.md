@@ -6,7 +6,7 @@ Chapter 9 of *AI Engineering* ("Understanding Inference Optimization") explains 
 
 ## Where you'll work
 
-Cluster notebook `lab12_cluster.ipynb` in your local Docker JupyterLab, on the KU VPN. About **4-5 hours**, including 20-30 minutes of waiting while measurements run. The notebook sends about 120 requests in total (136 if you do the optional 8-way test).
+Cluster notebook `lab12_cluster.ipynb` in your local Docker JupyterLab, on the KU VPN. About **4-5 hours**, including 20-30 minutes of waiting while measurements run. The notebook sends about 110 requests in total (126 if you do the optional 8-way test).
 
 ## Module objectives
 
@@ -23,12 +23,12 @@ Cluster notebook `lab12_cluster.ipynb` in your local Docker JupyterLab, on the K
 2. Read the first part of Chapter 9, "Understanding Inference Optimization": "Inference Overview" (including "Computational bottlenecks"), "Inference Performance Metrics" and "AI Accelerators". It ends where the section "Inference Optimization" starts. Keep it open for the analysis.
 3. **Setup:** run the setup cell. It records the time you started (in UTC). Write down your local time too.
 4. **Part A (guided):**
-   - A1: finish `compute_metrics()` (TTFT, TPOT, total latency, tokens/second) and check that `total ~= TTFT + TPOT x (n - 1)`.
+   - A1: read the given `compute_metrics()` (TTFT, TPOT, total latency, tokens/second), write down your guesses for TTFT and decode speed, then send one streamed request and compare your guesses with the measurement.
    - A2: measure all three models 6 times each; read the median and p90 table.
-   - A3: read the course cluster table (which model runs at which precision on which Mac), predict which model decodes fastest, then compute the bandwidth "speed limit" and MBU for each model.
+   - A3: read the course cluster table (which model runs at which precision on which Mac), predict which model has the highest and the lowest decode "speed limit", then compare your prediction with the given bandwidth-ceiling and MBU table.
    - A4: measure TTFT at about 500, 2K and 8K prompt tokens for `qwen-moe` and `qwen-dense`, and estimate prefill speed.
 5. **Part B (applied):**
-   - B1: define your SLO; finish `run_burst()` (parallel requests with `asyncio.gather`) and `burst_metrics()` (throughput, goodput, SLO pass rate).
+   - B1: define your SLO; finish `run_burst()` (parallel requests with `asyncio.gather`); read the given `burst_metrics()` (throughput, goodput, SLO pass rate); guess how long a 2-request parallel burst takes, then run the self-test.
    - B2: run the concurrency sweep (1, 2, 4 parallel) **once**, and read the table, the plots, and the slowest-requests table.
    - B3 (optional): the 8-way test, only if your instructor announces the higher limit.
    - B4: set your capacity assumptions and compute how many technicians the cluster could serve.
@@ -43,7 +43,7 @@ Cluster notebook `lab12_cluster.ipynb` in your local Docker JupyterLab, on the K
 
 | Component | Points | How graded |
 |---|---|---|
-| Auto-checks (scaled from the `ck.report()` line) | 50 | Grading script |
+| Auto-checks (21 check points scaled to 50) | 50 | Grading script reads the `ck.report()` line |
 | Written analysis | 40 | Uses your own results (15), correct concepts with chapter citation (15), clear reasoning and trade-offs (10) |
 | AI-use reflection | 10 | Complete and specific (10), generic (5), missing (0) |
 
@@ -54,5 +54,5 @@ Your numbers will differ from classmates' (different times, different cluster lo
 - **`RateLimitError` / HTTP 429 in the `error` column:** you sent more than 4 requests at once or more than 60 per minute. Wait a minute and re-run only the cell that failed. Do not raise the concurrency above 4 unless the instructor announced it.
 - **Numbers look strange (a 10-second TTFT in the middle of normal ones):** that is probably a classmate's long request or the VPN. Keep it; discuss it in Q4. Re-run a cell only if most requests failed.
 - **`SyntaxError: 'await' outside function`:** you are running the code as a script, not in Jupyter. Run cells in the notebook, in order.
-- **All metrics are `None`:** `compute_metrics()` is not finished yet. Fix it, re-run its cell, then re-run the cells after it.
+- **All metrics are `None`:** the request failed, or the A2 loop TODO is not finished yet. Read the `error` column, fix the TODO, re-run that cell, then re-run the cells after it.
 - Ask Copilot Chat with the exact error message, and paste the function you are working on.

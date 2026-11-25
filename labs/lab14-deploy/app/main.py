@@ -63,8 +63,8 @@ class AskRequest(BaseModel):
 
 @app.get("/health")
 def health():
-    # TODO (Part A, step 2): add the line  "status": "ok",  as the first key below.
-    # Monitoring tools (and Docker's HEALTHCHECK) look for it.
+    # TODO (Part A, step 2): add a "status" key with the value "ok" as the first key below.
+    # Monitoring tools look for it (Docker's HEALTHCHECK only checks that /health answers).
     return {
         "service": "larkspur-coapp",
         "version": SERVICE_VERSION,

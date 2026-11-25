@@ -39,11 +39,11 @@ def classify_heuristic(question: str) -> tuple:
     q = " " + (question or "").lower().strip() + " "
     n_words = len(q.split())
     # TODO (Part A, step A1), about 10 lines. Check in this order and return the FIRST rule that fires:
-    #   1. any cue in DATA_CUES is in q        -> return "large", f"data_cue:{cue.strip()}"
-    #   2. any cue in COMPLEX_CUES is in q     -> return "large", f"complex_cue:{cue.strip()}"
-    #   3. n_words > MAX_SIMPLE_WORDS          -> return "large", "long_question"
-    #   4. more than one "?" in q              -> return "large", "multi_part"
-    #   5. otherwise                           -> return "small", "short_lookup"
+    #   1. a cue from DATA_CUES appears in q     -> "large", reason "data_cue:" + that cue without spaces
+    #   2. a cue from COMPLEX_CUES appears in q  -> "large", reason "complex_cue:" + that cue without spaces
+    #   3. more words than MAX_SIMPLE_WORDS      -> "large", reason "long_question"
+    #   4. more than one question mark           -> "large", reason "multi_part"
+    #   5. none of the above                     -> "small", reason "short_lookup"
     # Until you do this, every question goes to the large model (no routing).
     return "large", "todo_not_routed"
 

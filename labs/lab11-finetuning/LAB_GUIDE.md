@@ -32,7 +32,7 @@ Fine-tuning is the most expensive way to adapt a model, so an AI engineer should
 6. **Part B (applied):**
    - B1: record base-model answers on the 40 test examples.
    - B2: fine-tune for 2 epochs and record runtime and peak GPU memory.
-   - B3: compute ROUGE-L and token F1 (you write `token_f1`), and judge 5 examples yourself.
+   - B3: see what ROUGE-L and token F1 reward on three example answers (both metrics are given), score base vs fine-tuned, and judge 5 examples yourself.
    - B4: optionally paste your Lab 8 RAG correctness number.
    - B5: save the adapter, compare its size with the model, and merge it.
 7. Answer the four written-analysis questions and the AI-use reflection, run the final cell.

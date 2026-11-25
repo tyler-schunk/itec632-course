@@ -98,7 +98,7 @@ def ask(req: AskRequest, x_simulate_failure: str | None = Header(default=None),
             history.append({"role": turn.role, "content": content})
         blocked, reason = guardrails.is_out_of_scope(question)
     # TODO (Part A, step A4): this logs the RAW question, including any email, phone number or key
-    # the user typed. Change req.question to the redacted `question` so only redacted text is logged.
+    # the user typed. Log the redacted version from the input guardrail step above instead.
     trace.set(question=req.question)
 
     if blocked:
@@ -161,13 +161,14 @@ def feedback(fb: FeedbackRequest):
     # FastAPI has already checked that rating is "up" or "down" (otherwise it answered 422).
     trace = tracing.find_trace(fb.request_id)
     # TODO (Part A, step A3), about 8 lines:
-    #   1. If trace is None -> raise HTTPException(status_code=404, detail="unknown request_id")
-    #   2. comment = guardrails.redact(fb.comment)[0] if fb.comment else None     (never store raw PII)
-    #   3. record = {"request_id": ..., "ts": tracing.now_iso(), "rating": ..., "comment": comment,
-    #                "route": (trace.get("route") or {}).get("route"), "model": trace.get("model"),
-    #                "session_id": trace.get("session_id"), "client_run": trace.get("client_run")}
-    #   4. tracing.append_jsonl(tracing.FEEDBACK_FILE, record)
-    #   5. return {"status": "recorded", "request_id": fb.request_id}
+    #   1. If no trace has this request_id, answer 404 (raise an HTTPException with a short detail).
+    #   2. Redact the comment with guardrails.redact() if there is one (never store raw PII);
+    #      redact() returns a tuple, and you want the text.
+    #   3. Build one record with these keys: request_id, ts (tracing.now_iso()), rating, comment
+    #      (the redacted one), and from the trace: route (the "route" field inside the trace's
+    #      route dict, which may be missing), model, session_id, client_run.
+    #   4. Append the record to tracing.FEEDBACK_FILE (tracing has a JSONL helper).
+    #   5. Return a small dict: status "recorded" and the request_id.
     raise HTTPException(status_code=501, detail="TODO: /feedback is not implemented yet")
 
 

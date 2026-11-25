@@ -3,6 +3,7 @@
 fastapi==0.165.0
 uvicorn==0.54.0
 openai==3.58.0
+httpx==0.28.1          # openai's HTTP library; pinned so the two stay compatible
 numpy==2.5.5
 rank-bm25==0.2.2
 python-dotenv==1.2.4

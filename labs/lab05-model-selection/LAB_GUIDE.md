@@ -26,10 +26,10 @@ Time: Part A about 2.5 hours (including about 20-30 minutes of waiting while the
 1. Read Chapter 4: "Evaluation Criteria" (domain-specific, generation, and instruction-following capability; "Cost and Latency"), "Model Selection" (including "Model Selection Workflow", "Model Build Versus Buy", and "Navigate Public Benchmarks" with "Data contamination with public benchmarks"), and "Design Your Evaluation Pipeline". The analysis questions cite these sections.
 2. Open the notebook with the VPN on and run the Setup cells.
 3. **A1:** write your evaluation criteria and weights *before* looking at any results.
-4. **A2-A3:** look at the 40-question evaluation set and one trap question's context; finish the key-fact and abstention helpers.
+4. **A2-A3:** look at the 40-question evaluation set and one trap question's context; finish the abstention helper, and test where the given key-fact check gives the wrong verdict.
 5. **A4-A5:** run all four models (160 requests), then the given `qwen-moe` judge (128 requests). Start this early; it takes a while. Everything is cached, so you can stop and resume.
 6. **A5b:** spot-check the judge: read 5 of its verdicts next to the answer and the reference, and record whether you agree.
-7. **A6-A8:** build the comparison table, the trap-question breakdown, and the weighted scorecard; choose your model.
+7. **A6-A8:** read the comparison table, the trap-question breakdown, and the weighted scorecard (the code is given): name the best model on key metrics, the model most misled by outdated documents, and one fix for it; see how rescaling stretches small gaps; then choose your model.
 8. **A9:** estimate the monthly API cost of each model at a few volumes (including your own estimate of Larkspur's volume) and the break-even volume against self-hosting.
 9. (Optional) **Part B:** sensitivity check, non-cost factors, and a build-vs-buy memo to Larkspur's CEO.
 10. Answer the written analysis and AI-use reflection, run `ck.report()`, save.
@@ -50,7 +50,7 @@ Time: Part A about 2.5 hours (including about 20-30 minutes of waiting while the
 ## Getting unstuck
 
 - **The model run seems stuck:** `qwen-dense` is a 27B dense model and is much slower than the others; that is part of what you are measuring. Watch for the "done in ...s" lines. If the kernel dies or the VPN drops, just re-run: answers already received are cached in `lab05_cache.json`.
-- **Lots of `None` verdicts from the judge:** print a few raw judge replies (`call(JUDGE, ...)["text"]`). `parse_verdict()` handles JSON and plain text; if the judge is returning something else, mention it in your analysis rather than fighting it.
+- **Lots of `None` verdicts from the judge:** look at a few raw judge replies (`judged["judge_raw"].head()` in a new cell). `parse_verdict()` handles JSON and plain text; if the judge is returning something else, mention it in your analysis rather than fighting it.
 - **`is_abstention` test cases fail:** print the failing sentence and write the simplest lowercase regex that matches it without matching the "No. SMS codes are not allowed" case.
 - **Not sure whether to agree with the judge (A5b):** compare the answer with the reference only, using the verdict definitions in `JUDGE_PROMPT`. Disagreeing is a valid result; write in the note what the judge missed.
 - **Cost numbers look tiny or huge (A9):** prices are dollars per **1 million** tokens, so one question should cost a small fraction of a cent. If you get dollars per question, you forgot to divide by 1,000,000; if the break-even is tiny, check that you divided the fixed cost by the cost of *one* question.

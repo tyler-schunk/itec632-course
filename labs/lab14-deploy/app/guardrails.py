@@ -20,7 +20,8 @@ import re
 # look like a phone number). Each value is a regular expression.
 PII_PATTERNS = {
     # TODO (Part A, step 3): add a pattern for API keys. Course keys look like  sk-abc123...
-    #   (sk- followed by 8 or more letters, digits, _ or -). Hint: r"\bsk-[A-Za-z0-9_\-]{8,}"
+    #   The pattern must match: a word boundary, the letters sk-, then 8 or more letters, digits, _ or -.
+    #   Describe it to your AI assistant in those words and test it with re.findall in the notebook.
     "API_KEY": r"(?!x)x",          # (?!x)x is a placeholder that can never match - replace it
     "PASSWORD": r"(?i)\b(?:password|passwd|pwd)\s*(?:is|:|=)\s*\S+",
     "EMAIL": r"[A-Za-z0-9._%+\-]+@[A-Za-z0-9\-]+(?:\.[A-Za-z0-9\-]+)+",
@@ -73,11 +74,11 @@ def is_out_of_scope(text: str) -> tuple:
     # Ignore redaction placeholders: "[REDACTED_EMAIL]" must not count as the in-scope word "email".
     low = re.sub(r"\[REDACTED_\w+\]", " ", text or "").lower()
     # TODO (Part A, step 4), about 6 lines:
-    #   1. If any INJECTION_PATTERNS regex matches `low` -> return True, "prompt_injection"
-    #   2. off_topic = any OFF_TOPIC_PATTERNS regex matches `low`
-    #      on_topic  = any IN_SCOPE_WORDS word starts a word in `low`: re.search(r"\b" + re.escape(w), low)
-    #   3. If off_topic and not on_topic -> return True, "off_topic"
-    #   Use re.search(pattern, low).
+    #   1. If any of the INJECTION_PATTERNS matches `low`, block it with the reason "prompt_injection".
+    #   2. Work out two True/False values: whether any OFF_TOPIC_PATTERNS matches `low`, and whether any
+    #      IN_SCOPE_WORDS word appears at the START of a word in `low` (so "rate" must not match inside
+    #      "pirate"; re.escape() and a word boundary help). any() and re.search() are useful here.
+    #   3. Block with the reason "off_topic" only if it is off topic AND no in-scope word appears.
     return False, ""
 
 
@@ -118,8 +119,8 @@ def check_output(result: dict, known_doc_ids=None) -> tuple:
         if n:
             actions.append(f"stripped_key x{n}")
     result = {**result, "answer": text}
-    # TODO (Part A, step 5), about 3 lines: if the answer has no citation (use has_citation)
-    #   AND does not say it doesn't know (DONT_KNOW.search(text) is None), then
-    #   append "no_citation_replaced" to actions and replace the answer:
-    #   result = {**result, "answer": NO_SOURCE_MESSAGE, "sources": []}
+    # TODO (Part A, step 5), about 3 lines: if the answer has no citation (use has_citation with
+    #   known_doc_ids) AND does not say it doesn't know (the DONT_KNOW pattern finds nothing in text),
+    #   then add "no_citation_replaced" to actions and build a new result dict in which the answer is
+    #   NO_SOURCE_MESSAGE and the sources list is empty (keep the other keys).
     return result, actions

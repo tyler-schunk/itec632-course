@@ -8,7 +8,7 @@ A fine-tuned model is only as good as the data it learns from. Next week (Lab 11
 
 - **Cluster notebook:** `lab10_cluster.ipynb` in your local Docker JupyterLab, with the **KU VPN** on.
 - **Time:** about 4-5 hours. The generation and judging steps take about 10-15 minutes of waiting in total.
-- **Cluster use:** about 150 requests (embeddings are batched; generation and judging run 3 requests at a time).
+- **Cluster use:** about 145 requests (embeddings are batched; generation and judging run 3 requests at a time).
 
 ## Module objectives
 

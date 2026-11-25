@@ -1,5 +1,5 @@
 """
-Retrieval for Co. app v2 (YOUR copy: complete the TODOs in chunk_doc, rrf_fuse, prefer_current) (Ch. 6, "RAG"): heading-aware chunking, term-based (BM25) and embedding
+Retrieval for Co. app v2 (YOUR copy: complete the TODOs in chunk_doc and prefer_current) (Ch. 6, "RAG"): heading-aware chunking, term-based (BM25) and embedding
 retrieval fused with reciprocal rank fusion (RRF), optional reranking, and metadata-aware filtering
 that prefers the current version when several versions of one document are retrieved.
 
@@ -156,10 +156,13 @@ def build_index(docs: list, use_embeddings: bool | None = None) -> dict:
 def rrf_fuse(rankings: list, k: int = config.RRF_K) -> list:
     """Reciprocal rank fusion: each ranking is a list of chunk ids, best first.
     Returns [(chunk_id, fused_score)] sorted best first. score = sum over rankings of 1 / (k + rank), rank from 1.
-
-    TODO (B1): paste your rrf() from Part A. The placeholder just uses the first ranking (BM25 only).
-    """
-    return [(cid, 1.0 / (k + rank)) for rank, cid in enumerate(rankings[0], start=1)]
+    Provided (same math as the notebook's rrf() in A4): a chunk found by both retrievers collects two small
+    scores, so it usually beats a chunk that only one retriever ranked first."""
+    scores = {}
+    for ranking in rankings:
+        for rank, cid in enumerate(ranking, start=1):
+            scores[cid] = scores.get(cid, 0.0) + 1.0 / (k + rank)
+    return sorted(scores.items(), key=lambda kv: kv[1], reverse=True)
 
 
 def prefer_current(chunks: list) -> tuple:
@@ -167,7 +170,8 @@ def prefer_current(chunks: list) -> tuple:
     Returns (kept_chunks, number_dropped).
 
     TODO (B2): for each doc_id find the newest effective_date among `chunks` (ISO dates compare as strings),
-    keep only chunks with that date, and return (kept, len(chunks) - len(kept)). Keep the original order.
+    keep only chunks with that date (in their original order), and return two things: the kept list and
+    how many chunks were dropped.
     The placeholder keeps everything.
     """
     return list(chunks), 0

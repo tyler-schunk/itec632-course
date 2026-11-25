@@ -30,13 +30,13 @@ Do the Colab notebook first; the cluster notebook builds on it.
 1. Open `labs/lab03-sampling/lab03_colab.ipynb` in Google Colab and select **Runtime > Change runtime type > T4 GPU**.
 2. Run the setup cells (the model downloads take a few minutes).
 3. **Part A:** read the next-token probabilities for a help-desk prompt, predict and then measure what temperature, top-k, and top-p do to them (the helpers are provided; you choose settings and record what you see), write the `generate()` call that samples real answers with your settings, and pick recommended settings for two Larkspur jobs (policy answers and a client announcement).
-4. **Part B:** finish `distinct_n` and run the diversity experiment; complete the consistency/hallucination loop; load the base model and complete the entropy and observation TODOs.
+4. **Part B:** the measurements are computed for you; before each experiment you write a quick prediction (any honest guess earns the point). Guess distinct-2 and run the diversity experiment; predict whether a low temperature stops the model from inventing phone numbers and run the consistency/hallucination experiment; load the base model, predict which model is more confident (lower entropy), and write your observations.
 5. Answer analysis Q2 and Q3 (Q1 is optional and not graded), run `ck.report()`, and download the .ipynb (File > Download > Download .ipynb).
 
 **Cluster notebook**
 6. Connect to the **KU VPN**, run `docker compose up`, and open `labs/lab03-sampling/lab03_cluster.ipynb`.
-7. **Part A:** compare one thinking and one non-thinking request, finish `extract_answer`, and test `temperature=0` consistency.
-8. **Part B:** read the SLA printout and the worked example, work out one due time (S4) by hand, then run the 8-question SLA benchmark in both modes (16 requests; thinking requests are slow, so let it run), build the summary table, inspect one reasoning trace, and re-test consistency at `temperature=0`.
+7. **Part A:** predict, then compare one thinking and one non-thinking request; finish `extract_answer`; predict, then test `temperature=0` consistency.
+8. **Part B:** read the SLA printout and the worked example, work out one due time (S4) by hand, then run the 8-question SLA benchmark in both modes (16 requests; thinking requests are slow, so let it run), read the provided summary table and decide whether you would turn thinking on for SLA questions, inspect one reasoning trace, and re-test consistency at `temperature=0` (predict first).
 9. Answer analysis Q4-Q6 and the **AI-use reflection** (it covers both notebooks), run `ck.report()`, and save.
 
 ## What to submit

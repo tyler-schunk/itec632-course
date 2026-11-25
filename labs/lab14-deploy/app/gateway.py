@@ -69,12 +69,10 @@ def answer_with_fallback(answer_fn, question, history=None, simulate=None,
             timeout = 0.001
         t = time.perf_counter()
         # TODO (Part A, step 6), about 8 lines. Right now the loop only ever tries the primary.
-        #   Wrap the call below in try/except Exception as e:
-        #     on error:   attempts.append({"model": model, "ok": False,
-        #                                  "error": f"{type(e).__name__}: {str(e)[:200]}",
-        #                                  "latency_s": round(time.perf_counter() - t, 3)})
-        #                 then `continue` so the loop tries the fallback model
-        #   on success the code below records the attempt and returns.
+        #   Wrap the call below in try/except Exception. On an error, add a failed attempt to `attempts`
+        #   with the same keys as the success record below, but ok=False plus an "error" text (the
+        #   exception's type name and the start of its message), then move on to the next model in
+        #   the loop (the fallback). On success the code below records the attempt and returns.
         result = call_answer(answer_fn, question, history, use_model, timeout)
         attempts.append({"model": model, "ok": True, "latency_s": round(time.perf_counter() - t, 3)})
         return {**result, "model": model, "fallback_used": i > 0}, attempts

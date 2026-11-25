@@ -18,7 +18,7 @@ Total: about 3.5 hours plus the Chapter 3 reading, including the written answers
 | MO | Objective (Bloom level) | CO |
 |---|---|---|
 | MO 4.1 | **Interpret** perplexity and bits-per-byte across texts, models, and tokenizers, and **use** them to flag abnormal text such as garbled tickets (Bloom: Apply) | CO1, CO2 |
-| MO 4.2 | **Implement** exact match, token F1, and embedding similarity, and **identify** answers where each one gives the wrong verdict (Bloom: Analyze) | CO2 |
+| MO 4.2 | **Apply** exact match, token F1, and embedding similarity to help-desk answers, **identify** answers where each one gives the wrong verdict, and **choose** which to trust for a type of question (Bloom: Analyze) | CO2 |
 | MO 4.3 | **Design** a scoring rubric and **use** an LLM as a judge with robust output parsing (Bloom: Create) | CO2 |
 | MO 4.4 | **Measure** self-preference and position bias in LLM judges and their agreement with human labels (Bloom: Evaluate) | CO2 |
 | MO 4.5 | **Recommend** an evaluation approach for the Larkspur help-desk assistant, justified with your own results and the chapter (Bloom: Evaluate) | CO2 |
@@ -30,8 +30,8 @@ Total: about 3.5 hours plus the Chapter 3 reading, including the written answers
    - Part A: run the given `lm_metrics()` function on a Larkspur runbook and read its three numbers (cross-entropy, perplexity, bits-per-byte).
    - Part B: predict, then measure, how a runbook, the same text shuffled, random characters, a public-domain book, and your own paragraph rank; compare three models (one with a different tokenizer); see how context lowers perplexity; and pick a bits-per-byte threshold that flags a garbled ticket among real Larkspur tickets.
 3. **Cluster:** with the VPN on, open `labs/lab04-eval-methods/lab04_cluster.ipynb` in your Docker JupyterLab.
-   - Part A: build exact match, token F1, cosine similarity, and an LLM-judge rubric step by step.
-   - Part B: get `qwen-small` answers to 25 gold questions (`corpus/larkspur-corpus/eval/`), score them four ways, run the judge-bias experiment with `qwen-moe` and `gemma-moe`, and **label 10 answers yourself** to see which metric agrees with you.
+   - Part A: run the given exact-match, token-F1, and embedding-similarity metrics, predict their verdicts before you look, try to fool token F1 with answers of your own, decide which metric you would trust for answers that are prices or times, and write an LLM-judge rubric.
+   - Part B: get `qwen-small` answers to 25 gold questions (`corpus/larkspur-corpus/eval/`), score them four ways, run the judge-bias experiment with `qwen-moe` and `gemma-moe` and give your verdict on each bias from the numbers, and **label 10 answers yourself** to see which metric agrees with you.
 4. Answer the written analysis questions in **each** notebook (Colab: Q1; cluster: Q1-Q3). The AI-use reflection is only in the cluster notebook and covers the whole lab. Questions marked *Optional* are not graded.
 5. Run the final `ck.report()` cell in each notebook and save.
 
@@ -55,6 +55,7 @@ Canvas accepts multiple files in one submission.
 
 - **Colab says "CUDA not available" or is very slow:** Runtime > Change runtime type > T4 GPU, then Runtime > Restart and run all. If you hit "CUDA out of memory" in B2, restart the runtime and run all again; the notebook frees each model before loading the next.
 - **A Colab check about a prediction fails:** predictions are graded only on being filled in, not on being right. Check the spelling (`"higher"`/`"lower"`, the exact text and ticket names) and that you re-ran the check cell after editing.
+- **A cluster verdict check fails (B3):** the check accepts any verdict the numbers support, and leaves borderline numbers to you. Compare your printed index or rate with the size guidance in the notebook and check the spelling of the verdict.
 - **Judge scores come back as `None`:** print the raw judge reply. Usually the rubric lost its "Reply with JSON only" line, or a placeholder like `{answer}` was deleted. `parse_score()` already handles most messy outputs.
 - **Rate-limit or timeout errors on the cluster:** just re-run the cell. Every reply is cached in `lab04_cache.json`, so finished requests are not sent again. Don't delete that file mid-lab.
 - **You changed your rubric (or `build_messages()`):** just re-run the cells after it. The cache recognizes the changed prompt and asks the model again (about 80 requests for a full rubric change).
